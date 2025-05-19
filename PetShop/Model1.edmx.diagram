@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2346edbd022a484ba0f740825dbd9f4f" Name="Diagram1">
+        <EntityTypeShape EntityType="PetShopModel.BASKET" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.CATEGORIES" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.FIRM" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.PRODUCTS" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.PURCHASE" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.ROLE" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.STATUS" Width="1.5" PointX="3.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.TYPE" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.USERS" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopModel.ZAKAZ" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
+        <AssociationConnector Association="PetShopModel.FK__BASKET__product___3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__BASKET__product___59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__BASKET__users_id__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__BASKET__users_id__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__catego__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__catego__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__firm_i__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__firm_i__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__type_i__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__type_i__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PURCHASE__produc__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PURCHASE__produc__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__PURCHASE__zakaz___47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__USERS__role__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__USERS__role__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__ZAKAZ__status_id__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopModel.FK__ZAKAZ__users_id__4316F928" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PetShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BASKET">
+          <Key>
+            <PropertyRef Name="basket_id" />
+          </Key>
+          <Property Name="basket_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="users_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIES">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FIRM">
+          <Key>
+            <PropertyRef Name="firm_id" />
+          </Key>
+          <Property Name="firm_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="firm_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="image" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PURCHASE">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="zakaz_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TYPE">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="role_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ZAKAZ">
+          <Key>
+            <PropertyRef Name="zakaz_id" />
+          </Key>
+          <Property Name="zakaz_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="users_id" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BASKET__product___3F466844">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BASKET__product___59063A47">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BASKET__users_id__403A8C7D">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BASKET__users_id__59FA5E80">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__catego__412EB0B6">
+          <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIES">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__catego__5AEE82B9">
+          <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIES">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__firm_i__4222D4EF">
+          <End Role="FIRM" Type="Self.FIRM" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FIRM">
+              <PropertyRef Name="firm_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="firm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__firm_i__5BE2A6F2">
+          <End Role="FIRM" Type="Self.FIRM" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FIRM">
+              <PropertyRef Name="firm_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="firm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__type_i__4316F928">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__type_i__5CD6CB2B">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PURCHASE__produc__440B1D61">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PURCHASE__produc__5DCAEF64">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PURCHASE__zakaz___47DBAE45">
+          <End Role="ZAKAZ" Type="Self.ZAKAZ" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZAKAZ">
+              <PropertyRef Name="zakaz_id" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="zakaz_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__role__45F365D3">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__role__5EBF139D">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ZAKAZ__status_id__440B1D61">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="1" />
+          <End Role="ZAKAZ" Type="Self.ZAKAZ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="ZAKAZ">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ZAKAZ__users_id__4316F928">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="ZAKAZ" Type="Self.ZAKAZ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="ZAKAZ">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PetShopModelContainer">
+          <EntitySet Name="BASKET" EntityType="Self.BASKET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FIRM" EntityType="Self.FIRM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PURCHASE" EntityType="Self.PURCHASE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TYPE" EntityType="Self.TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZAKAZ" EntityType="Self.ZAKAZ" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BASKET__product___3F466844" Association="Self.FK__BASKET__product___3F466844">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BASKET__product___59063A47" Association="Self.FK__BASKET__product___59063A47">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BASKET__users_id__403A8C7D" Association="Self.FK__BASKET__users_id__403A8C7D">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BASKET__users_id__59FA5E80" Association="Self.FK__BASKET__users_id__59FA5E80">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__catego__412EB0B6" Association="Self.FK__PRODUCTS__catego__412EB0B6">
+            <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__catego__5AEE82B9" Association="Self.FK__PRODUCTS__catego__5AEE82B9">
+            <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__firm_i__4222D4EF" Association="Self.FK__PRODUCTS__firm_i__4222D4EF">
+            <End Role="FIRM" EntitySet="FIRM" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__firm_i__5BE2A6F2" Association="Self.FK__PRODUCTS__firm_i__5BE2A6F2">
+            <End Role="FIRM" EntitySet="FIRM" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__type_i__4316F928" Association="Self.FK__PRODUCTS__type_i__4316F928">
+            <End Role="TYPE" EntitySet="TYPE" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__type_i__5CD6CB2B" Association="Self.FK__PRODUCTS__type_i__5CD6CB2B">
+            <End Role="TYPE" EntitySet="TYPE" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PURCHASE__produc__440B1D61" Association="Self.FK__PURCHASE__produc__440B1D61">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PURCHASE__produc__5DCAEF64" Association="Self.FK__PURCHASE__produc__5DCAEF64">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PURCHASE__zakaz___47DBAE45" Association="Self.FK__PURCHASE__zakaz___47DBAE45">
+            <End Role="ZAKAZ" EntitySet="ZAKAZ" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__role__45F365D3" Association="Self.FK__USERS__role__45F365D3">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__role__5EBF139D" Association="Self.FK__USERS__role__5EBF139D">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ZAKAZ__status_id__440B1D61" Association="Self.FK__ZAKAZ__status_id__440B1D61">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="ZAKAZ" EntitySet="ZAKAZ" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ZAKAZ__users_id__4316F928" Association="Self.FK__ZAKAZ__users_id__4316F928">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="ZAKAZ" EntitySet="ZAKAZ" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PetShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BASKET">
+          <Key>
+            <PropertyRef Name="basket_id" />
+          </Key>
+          <Property Name="basket_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__BASKET__product___3F466844" FromRole="BASKET" ToRole="PRODUCTS" />
+          <NavigationProperty Name="PRODUCTS1" Relationship="Self.FK__BASKET__product___59063A47" FromRole="BASKET" ToRole="PRODUCTS" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__BASKET__users_id__403A8C7D" FromRole="BASKET" ToRole="USERS" />
+          <NavigationProperty Name="USERS1" Relationship="Self.FK__BASKET__users_id__59FA5E80" FromRole="BASKET" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="CATEGORIES">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__PRODUCTS__catego__412EB0B6" FromRole="CATEGORIES" ToRole="PRODUCTS" />
+          <NavigationProperty Name="PRODUCTS1" Relationship="Self.FK__PRODUCTS__catego__5AEE82B9" FromRole="CATEGORIES" ToRole="PRODUCTS" />
+        </EntityType>
+        <EntityType Name="FIRM">
+          <Key>
+            <PropertyRef Name="firm_id" />
+          </Key>
+          <Property Name="firm_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__PRODUCTS__firm_i__4222D4EF" FromRole="FIRM" ToRole="PRODUCTS" />
+          <NavigationProperty Name="PRODUCTS1" Relationship="Self.FK__PRODUCTS__firm_i__5BE2A6F2" FromRole="FIRM" ToRole="PRODUCTS" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="firm_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BASKET" Relationship="Self.FK__BASKET__product___3F466844" FromRole="PRODUCTS" ToRole="BASKET" />
+          <NavigationProperty Name="BASKET1" Relationship="Self.FK__BASKET__product___59063A47" FromRole="PRODUCTS" ToRole="BASKET" />
+          <NavigationProperty Name="CATEGORIES" Relationship="Self.FK__PRODUCTS__catego__412EB0B6" FromRole="PRODUCTS" ToRole="CATEGORIES" />
+          <NavigationProperty Name="CATEGORIES1" Relationship="Self.FK__PRODUCTS__catego__5AEE82B9" FromRole="PRODUCTS" ToRole="CATEGORIES" />
+          <NavigationProperty Name="FIRM" Relationship="Self.FK__PRODUCTS__firm_i__4222D4EF" FromRole="PRODUCTS" ToRole="FIRM" />
+          <NavigationProperty Name="FIRM1" Relationship="Self.FK__PRODUCTS__firm_i__5BE2A6F2" FromRole="PRODUCTS" ToRole="FIRM" />
+          <NavigationProperty Name="TYPE" Relationship="Self.FK__PRODUCTS__type_i__4316F928" FromRole="PRODUCTS" ToRole="TYPE" />
+          <NavigationProperty Name="TYPE1" Relationship="Self.FK__PRODUCTS__type_i__5CD6CB2B" FromRole="PRODUCTS" ToRole="TYPE" />
+          <NavigationProperty Name="PURCHASE" Relationship="Self.FK__PURCHASE__produc__440B1D61" FromRole="PRODUCTS" ToRole="PURCHASE" />
+          <NavigationProperty Name="PURCHASE1" Relationship="Self.FK__PURCHASE__produc__5DCAEF64" FromRole="PRODUCTS" ToRole="PURCHASE" />
+        </EntityType>
+        <EntityType Name="PURCHASE">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="zakaz_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__PURCHASE__produc__440B1D61" FromRole="PURCHASE" ToRole="PRODUCTS" />
+          <NavigationProperty Name="PRODUCTS1" Relationship="Self.FK__PURCHASE__produc__5DCAEF64" FromRole="PURCHASE" ToRole="PRODUCTS" />
+          <NavigationProperty Name="ZAKAZ" Relationship="Self.FK__PURCHASE__zakaz___47DBAE45" FromRole="PURCHASE" ToRole="ZAKAZ" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__role__45F365D3" FromRole="ROLE" ToRole="USERS" />
+          <NavigationProperty Name="USERS1" Relationship="Self.FK__USERS__role__5EBF139D" FromRole="ROLE" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ZAKAZ" Relationship="Self.FK__ZAKAZ__status_id__440B1D61" FromRole="STATUS" ToRole="ZAKAZ" />
+        </EntityType>
+        <EntityType Name="TYPE">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PRODUCTS" Relationship="Self.FK__PRODUCTS__type_i__4316F928" FromRole="TYPE" ToRole="PRODUCTS" />
+          <NavigationProperty Name="PRODUCTS1" Relationship="Self.FK__PRODUCTS__type_i__5CD6CB2B" FromRole="TYPE" ToRole="PRODUCTS" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role_id" Type="Int32" />
+          <NavigationProperty Name="BASKET" Relationship="Self.FK__BASKET__users_id__403A8C7D" FromRole="USERS" ToRole="BASKET" />
+          <NavigationProperty Name="BASKET1" Relationship="Self.FK__BASKET__users_id__59FA5E80" FromRole="USERS" ToRole="BASKET" />
+          <NavigationProperty Name="ROLE" Relationship="Self.FK__USERS__role__45F365D3" FromRole="USERS" ToRole="ROLE" />
+          <NavigationProperty Name="ROLE1" Relationship="Self.FK__USERS__role__5EBF139D" FromRole="USERS" ToRole="ROLE" />
+          <NavigationProperty Name="ZAKAZ" Relationship="Self.FK__ZAKAZ__users_id__4316F928" FromRole="USERS" ToRole="ZAKAZ" />
+        </EntityType>
+        <EntityType Name="ZAKAZ">
+          <Key>
+            <PropertyRef Name="zakaz_id" />
+          </Key>
+          <Property Name="zakaz_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PURCHASE" Relationship="Self.FK__PURCHASE__zakaz___47DBAE45" FromRole="ZAKAZ" ToRole="PURCHASE" />
+          <NavigationProperty Name="STATUS" Relationship="Self.FK__ZAKAZ__status_id__440B1D61" FromRole="ZAKAZ" ToRole="STATUS" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__ZAKAZ__users_id__4316F928" FromRole="ZAKAZ" ToRole="USERS" />
+        </EntityType>
+        <Association Name="FK__BASKET__product___3F466844">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BASKET__product___59063A47">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BASKET__users_id__403A8C7D">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BASKET__users_id__59FA5E80">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="BASKET" Type="Self.BASKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="BASKET">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__catego__412EB0B6">
+          <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIES">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__catego__5AEE82B9">
+          <End Role="CATEGORIES" Type="Self.CATEGORIES" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIES">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__firm_i__4222D4EF">
+          <End Role="FIRM" Type="Self.FIRM" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FIRM">
+              <PropertyRef Name="firm_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="firm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__firm_i__5BE2A6F2">
+          <End Role="FIRM" Type="Self.FIRM" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FIRM">
+              <PropertyRef Name="firm_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="firm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__type_i__4316F928">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTS__type_i__5CD6CB2B">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="1" />
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="PRODUCTS">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PURCHASE__produc__440B1D61">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PURCHASE__produc__5DCAEF64">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PURCHASE__zakaz___47DBAE45">
+          <End Role="ZAKAZ" Type="Self.ZAKAZ" Multiplicity="1" />
+          <End Role="PURCHASE" Type="Self.PURCHASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZAKAZ">
+              <PropertyRef Name="zakaz_id" />
+            </Principal>
+            <Dependent Role="PURCHASE">
+              <PropertyRef Name="zakaz_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__role__45F365D3">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__role__5EBF139D">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ZAKAZ__status_id__440B1D61">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="1" />
+          <End Role="ZAKAZ" Type="Self.ZAKAZ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="ZAKAZ">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ZAKAZ__users_id__4316F928">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="ZAKAZ" Type="Self.ZAKAZ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="ZAKAZ">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PetShopEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BASKET" EntityType="Self.BASKET" />
+          <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORIES" />
+          <EntitySet Name="FIRM" EntityType="Self.FIRM" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" />
+          <EntitySet Name="PURCHASE" EntityType="Self.PURCHASE" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" />
+          <EntitySet Name="TYPE" EntityType="Self.TYPE" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <EntitySet Name="ZAKAZ" EntityType="Self.ZAKAZ" />
+          <AssociationSet Name="FK__BASKET__product___3F466844" Association="Self.FK__BASKET__product___3F466844">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BASKET__product___59063A47" Association="Self.FK__BASKET__product___59063A47">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BASKET__users_id__403A8C7D" Association="Self.FK__BASKET__users_id__403A8C7D">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BASKET__users_id__59FA5E80" Association="Self.FK__BASKET__users_id__59FA5E80">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BASKET" EntitySet="BASKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__catego__412EB0B6" Association="Self.FK__PRODUCTS__catego__412EB0B6">
+            <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__catego__5AEE82B9" Association="Self.FK__PRODUCTS__catego__5AEE82B9">
+            <End Role="CATEGORIES" EntitySet="CATEGORIES" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__firm_i__4222D4EF" Association="Self.FK__PRODUCTS__firm_i__4222D4EF">
+            <End Role="FIRM" EntitySet="FIRM" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__firm_i__5BE2A6F2" Association="Self.FK__PRODUCTS__firm_i__5BE2A6F2">
+            <End Role="FIRM" EntitySet="FIRM" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__type_i__4316F928" Association="Self.FK__PRODUCTS__type_i__4316F928">
+            <End Role="TYPE" EntitySet="TYPE" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCTS__type_i__5CD6CB2B" Association="Self.FK__PRODUCTS__type_i__5CD6CB2B">
+            <End Role="TYPE" EntitySet="TYPE" />
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PURCHASE__produc__440B1D61" Association="Self.FK__PURCHASE__produc__440B1D61">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PURCHASE__produc__5DCAEF64" Association="Self.FK__PURCHASE__produc__5DCAEF64">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PURCHASE__zakaz___47DBAE45" Association="Self.FK__PURCHASE__zakaz___47DBAE45">
+            <End Role="ZAKAZ" EntitySet="ZAKAZ" />
+            <End Role="PURCHASE" EntitySet="PURCHASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__role__45F365D3" Association="Self.FK__USERS__role__45F365D3">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__role__5EBF139D" Association="Self.FK__USERS__role__5EBF139D">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ZAKAZ__status_id__440B1D61" Association="Self.FK__ZAKAZ__status_id__440B1D61">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="ZAKAZ" EntitySet="ZAKAZ" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ZAKAZ__users_id__4316F928" Association="Self.FK__ZAKAZ__users_id__4316F928">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="ZAKAZ" EntitySet="ZAKAZ" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PetShopModelContainer" CdmEntityContainer="PetShopEntities1">
+          <EntitySetMapping Name="BASKET">
+            <EntityTypeMapping TypeName="PetShopModel.BASKET">
+              <MappingFragment StoreEntitySet="BASKET">
+                <ScalarProperty Name="basket_id" ColumnName="basket_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIES">
+            <EntityTypeMapping TypeName="PetShopModel.CATEGORIES">
+              <MappingFragment StoreEntitySet="CATEGORIES">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FIRM">
+            <EntityTypeMapping TypeName="PetShopModel.FIRM">
+              <MappingFragment StoreEntitySet="FIRM">
+                <ScalarProperty Name="firm_id" ColumnName="firm_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTS">
+            <EntityTypeMapping TypeName="PetShopModel.PRODUCTS">
+              <MappingFragment StoreEntitySet="PRODUCTS">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="firm_id" ColumnName="firm_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PURCHASE">
+            <EntityTypeMapping TypeName="PetShopModel.PURCHASE">
+              <MappingFragment StoreEntitySet="PURCHASE">
+                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+                <ScalarProperty Name="zakaz_id" ColumnName="zakaz_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE">
+            <EntityTypeMapping TypeName="PetShopModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLE">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUS">
+            <EntityTypeMapping TypeName="PetShopModel.STATUS">
+              <MappingFragment StoreEntitySet="STATUS">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPE">
+            <EntityTypeMapping TypeName="PetShopModel.TYPE">
+              <MappingFragment StoreEntitySet="TYPE">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="PetShopModel.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZAKAZ">
+            <EntityTypeMapping TypeName="PetShopModel.ZAKAZ">
+              <MappingFragment StoreEntitySet="ZAKAZ">
+                <ScalarProperty Name="zakaz_id" ColumnName="zakaz_id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,38 @@
+﻿<Page x:Class="PetShop.Pages.OrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PetShop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrdersPage">
+
+    <Grid Background="#FF5F344C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Мои заказы" Grid.Row="0" FontSize="18" FontWeight="Bold" Margin="10,10,352,10" Foreground="#FFECC286"/>
+
+        <ListView x:Name="lvOrders" Grid.Row="1" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding zakaz_id}" Width="50"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding date, StringFormat='{}{0:dd.MM.yyyy}'}" Width="100"/>
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding STATUS.name}" Width="150"/>
+                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding TotalAmount}" Width="100"/>
+                    <!--<GridViewColumn Header="Действия" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Подробности" Click="BtnDetails_Click" Tag="{Binding zakaz_id}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>-->
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="696,0,0,0" VerticalAlignment="Center" Width="94" Click="Button_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286" FontWeight="Bold"/>
+    </Grid>
+</Page>

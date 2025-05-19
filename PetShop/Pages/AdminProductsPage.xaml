@@ -1,0 +1,36 @@
+﻿<Page x:Class="PetShop.Pages.AdminProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminProductsPage">
+
+    <Grid Background="#FF5F344C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель управления -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Button Content="Добавить" Click="BtnAdd_Click" Margin="5" BorderBrush="Black" FontWeight="Bold" Foreground="#FFECC286" Background="#FF75425E"/>
+            <Button Content="Редактировать" Click="BtnEdit_Click" Margin="5" Foreground="#FFECC286" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E"/>
+            <Button Content="Удалить" Click="BtnDelete_Click" Margin="5" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E" Foreground="#FFECC286"/>
+        </StackPanel>
+
+        <!-- Список товаров -->
+        <DataGrid x:Name="dgProducts" Grid.Row="1" Margin="10" AutoGenerateColumns="False"
+                 CanUserAddRows="False" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding product_id}" Width="Auto"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding name}" Width="*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding price}" Width="Auto"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding quantity}" Width="Auto"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding CATEGORIES.name}" Width="Auto"/>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding FIRM.name}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

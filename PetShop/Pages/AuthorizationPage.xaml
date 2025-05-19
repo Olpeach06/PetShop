@@ -1,0 +1,33 @@
+﻿<Page x:Class="PetShop.Pages.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthorizationPage">
+
+    <Grid Background="#FF5F344C">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <TextBlock Text="Авторизация" FontSize="24" FontWeight="Bold" 
+                      HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="#FFECC286"/>
+
+            <TextBlock Text="Email" Foreground="#FFECC286"/>
+            <TextBox x:Name="txtEmail" Margin="0,5,0,0" 
+                    LostFocus="TxtEmail_LostFocus"/>
+
+            <TextBlock Text="Пароль" Margin="0,10,0,0" Foreground="#FFECC286"/>
+            <PasswordBox x:Name="txtPassword" Margin="0,5,0,0"
+                        GotFocus="TxtPassword_GotFocus"/>
+
+            <TextBlock x:Name="txtError" Foreground="White" Margin="0,10,0,0" 
+                       TextWrapping="Wrap" Visibility="Collapsed"/>
+
+            <Button x:Name="BtnLogin" Content="Войти" Margin="0,15,0,5" 
+                    Padding="10,5" Click="BtnLogin_Click" Foreground="#FFECC286" Background="#FF75425E" BorderBrush="Black" FontWeight="Bold" FontSize="14"/>
+
+            <Button x:Name="BtnRegister" Content="Регистрация" 
+                    Padding="10,5" Click="BtnRegister_Click" Foreground="#FFECC286" Background="#FF75425E" BorderBrush="Black" FontWeight="Bold" FontSize="14"/>
+        </StackPanel>
+    </Grid>
+</Page>

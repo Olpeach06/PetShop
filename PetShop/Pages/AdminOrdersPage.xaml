@@ -1,0 +1,51 @@
+﻿<Page x:Class="PetShop.Pages.AdminOrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PetShop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Администрирование заказов">
+
+    <Grid Margin="10" Background="#FF5F344C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель фильтров -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <ComboBox x:Name="cmbStatus" Width="200" Margin="0,0,10,0"
+                      DisplayMemberPath="name" SelectedValuePath="status_id"/>
+            <Button Content="Применить фильтр" Click="BtnApplyFilter_Click" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E"/>
+            <Button Content="Сбросить фильтр" Click="BtnResetFilter_Click" Margin="10,0,0,0" FontWeight="Bold" BorderBrush="Black" Background="#FF75425E"/>
+        </StackPanel>
+
+        <!-- Список заказов -->
+        <DataGrid x:Name="dgOrders" Grid.Row="1" AutoGenerateColumns="False" 
+          SelectionMode="Single" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" Binding="{Binding zakaz_id}" Width="Auto"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat='{}{0:dd.MM.yyyy}'}" Width="100"/>
+
+                <!-- Вот эти строки - замените ими старые колонки пользователя и суммы -->
+                <DataGridTextColumn Header="Пользователь" Binding="{Binding UserFullName}" Width="200"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalAmount, StringFormat='{}{0:N2} руб.'}" Width="120"/>
+
+                <DataGridTextColumn Header="Статус" Binding="{Binding STATUS.name}" Width="120"/>
+                <DataGridTemplateColumn Header="Изменить статус" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding DataContext.StatusList, RelativeSource={RelativeSource AncestorType=Page}}"
+                              SelectedValue="{Binding status_id, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="name"
+                              SelectedValuePath="status_id"
+                              SelectionChanged="StatusComboBox_SelectionChanged"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
