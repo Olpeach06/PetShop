@@ -23,4 +23,8 @@ namespace PetShop
         public virtual PRODUCTS PRODUCTS1 { get; set; }
         public virtual ZAKAZ ZAKAZ { get; set; }
     }
+    public partial class PURCHASE
+    {
+        public decimal Sum => (decimal)(quantity * PRODUCTS.price);
+    }
 }

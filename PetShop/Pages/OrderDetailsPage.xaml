@@ -21,13 +21,13 @@
             <TextBlock Text="Детали заказа" FontSize="18" FontWeight="Bold" Foreground="#FFECC286"/>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Text="Номер:" FontWeight="Bold" Margin="0,0,5,0" Foreground="#FFECC286"/>
-                <TextBlock Text="{Binding zakaz_id}"/>
+                <TextBlock Text="{Binding zakaz_id}" Foreground="#FFECC286"/>
 
                 <TextBlock Text="Дата:" FontWeight="Bold" Margin="20,0,5,0" Foreground="#FFECC286"/>
-                <TextBlock Text="{Binding date, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                <TextBlock Text="{Binding date, StringFormat='{}{0:dd.MM.yyyy}'}" Foreground="#FFECC286"/>
 
                 <TextBlock Text="Статус:" FontWeight="Bold" Margin="20,0,5,0" Foreground="#FFECC286"/>
-                <TextBlock Text="{Binding STATUS.name}"/>
+                <TextBlock Text="{Binding STATUS.name}" Foreground="#FFECC286"/>
             </StackPanel>
         </StackPanel>
 
@@ -39,36 +39,31 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding PRODUCTS.image}" Width="50" Height="50" Margin="0,0,10,0"/>
+                                    <Image Source="{Binding PRODUCTS.CurrentPhoto}" Width="50" Height="50" Margin="0,0,10,0"/>
                                     <TextBlock Text="{Binding PRODUCTS.name}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding PRODUCTS.price, StringFormat='{}{0:C}'}" Width="100"/>
+                    <GridViewColumn Header="Цена" Width="100">
+                        <GridViewColumn.DisplayMemberBinding>
+                            <Binding Path="PRODUCTS.price" StringFormat="{}{0:N2} ₽"/>
+                        </GridViewColumn.DisplayMemberBinding>
+                    </GridViewColumn>
                     <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding quantity}" Width="80"/>
                     <GridViewColumn Header="Сумма" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=., StringFormat='{}{0:C}'}">
-                                    <TextBlock.Tag>
-                                        <MultiBinding Converter="{StaticResource MultiplyConverter}">
-                                            <Binding Path="PRODUCTS.price"/>
-                                            <Binding Path="quantity"/>
-                                        </MultiBinding>
-                                    </TextBlock.Tag>
-                                </TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
+                        <GridViewColumn.DisplayMemberBinding>
+                            <Binding Path="Sum" StringFormat="{}{0:N2} ₽"/>
+                        </GridViewColumn.DisplayMemberBinding>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
 
         <!-- Итого и кнопка назад -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="603,10,0,10">
             <TextBlock Text="Итого:" FontWeight="Bold" Margin="0,0,10,0" Foreground="#FFECC286"/>
-            <TextBlock x:Name="txtTotal" FontWeight="Bold" FontSize="16"/>
+            <TextBlock x:Name="txtTotal" FontWeight="Bold" FontSize="16" Foreground="#FFECC286"/>
             <Button Content="Назад" Margin="20,0,0,0" Width="100" Click="BtnBack_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286"/>
         </StackPanel>
     </Grid>

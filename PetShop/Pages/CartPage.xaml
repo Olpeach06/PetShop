@@ -36,7 +36,7 @@
                         <TextBlock Grid.Column="2" Text="{Binding quantity}" 
                                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                        <TextBlock Grid.Column="3" Text="{Binding PRODUCTS.price, StringFormat={}{0:C}}" 
+                        <TextBlock Grid.Column="3" Text="{Binding PRODUCTS.price, StringFormat={}{0:N2} ₽}" 
                                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                         <Button Grid.Column="4" Content="Удалить" Background="red" Foreground="White"
@@ -48,7 +48,7 @@
 
         <!-- Итого и кнопка оформления заказа -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <TextBlock x:Name="txtTotal" FontSize="16" FontWeight="Bold" Margin="0,0,20,0"/>
+            <TextBlock x:Name="txtTotal" FontSize="16" FontWeight="Bold" Margin="0,0,20,0" Foreground="#FFECC286"/>
             <Button Content="Оформить заказ" Background="#FF75425E" Foreground="#FFECC286"
                     Padding="20,5" FontWeight="Bold" Click="BtnCheckout_Click" BorderBrush="Black"/>
         </StackPanel>

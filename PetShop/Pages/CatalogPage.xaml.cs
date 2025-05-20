@@ -22,19 +22,36 @@ namespace PetShop.Pages
 
         private void LoadData()
         {
-            _allProducts = AppConnect.model0db.PRODUCTS
-                .Include(p => p.CATEGORIES)
-                .Include(p => p.FIRM)
-                .Include(p => p.TYPE)
-                .ToList();
+            try
+            {
+                _allProducts = AppConnect.model0db.PRODUCTS
+                    .Include(p => p.CATEGORIES)
+                    .Include(p => p.FIRM)
+                    .Include(p => p.TYPE)
+                    .ToList();
 
-            lvProducts.ItemsSource = _allProducts;
+                // Загрузка категорий с пунктом "По умолчанию"
+                var categories = AppConnect.model0db.CATEGORIES.ToList();
+                cmbCategories.Items.Clear();
+                cmbCategories.Items.Add(new { name = "по умолчанию", category_id = -1 }); // Первый элемент
+                foreach (var cat in categories)
+                    cmbCategories.Items.Add(cat);
+                cmbCategories.SelectedIndex = 0;
 
-            cmbCategories.ItemsSource = AppConnect.model0db.CATEGORIES.ToList();
-            cmbCategories.SelectedIndex = -1;
+                // Загрузка фирм с пунктом "По умолчанию"
+                var firms = AppConnect.model0db.FIRM.ToList();
+                cmbFirms.Items.Clear();
+                cmbFirms.Items.Add(new { name = "по умолчанию", category_id = -1 }); // Первый элемент
+                foreach (var firm in firms)
+                    cmbFirms.Items.Add(firm);
+                cmbFirms.SelectedIndex = 0;
 
-            cmbFirms.ItemsSource = AppConnect.model0db.FIRM.ToList();
-            cmbFirms.SelectedIndex = -1;
+                lvProducts.ItemsSource = _allProducts;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}");
+            }
         }
 
         private void BtnAddToCart_Click(object sender, RoutedEventArgs e)
@@ -94,26 +111,27 @@ namespace PetShop.Pages
         }
         private void ApplyFilters()
         {
-            var products = _allProducts.AsQueryable();
+            var filtered = _allProducts.AsEnumerable();
 
-            if (cmbCategories.SelectedItem != null)
+            // Фильтр по категории (если выбрано не "По умолчанию")
+            if (cmbCategories.SelectedIndex > 0 && cmbCategories.SelectedItem is CATEGORIES selectedCategory)
             {
-                var category = (CATEGORIES)cmbCategories.SelectedItem;
-                products = products.Where(p => p.category_id == category.category_id);
+                filtered = filtered.Where(p => p.category_id == selectedCategory.category_id);
             }
 
-            if (cmbFirms.SelectedItem != null)
+            // Фильтр по фирме (если выбрано не "По умолчанию")
+            if (cmbFirms.SelectedIndex > 0 && cmbFirms.SelectedItem is FIRM selectedFirm)
             {
-                var firm = (FIRM)cmbFirms.SelectedItem;
-                products = products.Where(p => p.firm_id == firm.firm_id);
+                filtered = filtered.Where(p => p.firm_id == selectedFirm.firm_id);
             }
 
+            // Фильтр по поиску
             if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
-                products = products.Where(p => p.name.Contains(txtSearch.Text));
+                filtered = filtered.Where(p => p.name.Contains(txtSearch.Text));
             }
 
-            lvProducts.ItemsSource = products.ToList();
+            lvProducts.ItemsSource = filtered.ToList();
         }
     }
 }

@@ -27,12 +27,12 @@
                 </TransformGroup>
             </StackPanel.RenderTransform>
             <ComboBox x:Name="cmbCategories" Width="200" Margin="5"
-              DisplayMemberPath="name" SelectedValuePath="category_id"
-              SelectionChanged="CmbCategories_SelectionChanged"/>
+          DisplayMemberPath="name"
+          SelectionChanged="CmbCategories_SelectionChanged"/>
 
             <ComboBox x:Name="cmbFirms" Width="200" Margin="5"
-              DisplayMemberPath="name" SelectedValuePath="firm_id"
-              SelectionChanged="CmbFirms_SelectionChanged"/>
+          DisplayMemberPath="name"
+          SelectionChanged="CmbFirms_SelectionChanged"/>
 
             <TextBox x:Name="txtSearch" Width="200" Margin="5" TextChanged="TxtSearch_TextChanged"/>
         </StackPanel>
@@ -62,7 +62,7 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding price, StringFormat='{}{0:C}'}" 
+                                <TextBlock Text="{Binding price, StringFormat='{}{0:N2} ₽'}" 
                                     VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding quantity, StringFormat='Остаток: {0} шт.'}" 
                                      VerticalAlignment="Center" HorizontalAlignment="Center"/>

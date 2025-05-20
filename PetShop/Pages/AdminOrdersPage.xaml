@@ -37,11 +37,17 @@
                 <DataGridTemplateColumn Header="Изменить статус" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding DataContext.StatusList, RelativeSource={RelativeSource AncestorType=Page}}"
-                              SelectedValue="{Binding status_id, UpdateSourceTrigger=PropertyChanged}"
-                              DisplayMemberPath="name"
-                              SelectedValuePath="status_id"
-                              SelectionChanged="StatusComboBox_SelectionChanged"/>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox ItemsSource="{Binding DataContext.StatusList, RelativeSource={RelativeSource AncestorType=Page}}"
+                      SelectedValue="{Binding status_id, UpdateSourceTrigger=PropertyChanged}"
+                      DisplayMemberPath="name"
+                      SelectedValuePath="status_id"
+                      SelectionChanged="StatusComboBox_SelectionChanged"
+                      Width="120"/>
+                                <Button Content="✓" Click="BtnSaveStatus_Click" 
+                    Tag="{Binding}" Margin="5,0,0,0"
+                    Width="20" Background="LightGreen"/>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -19,20 +19,27 @@
         <ListView x:Name="lvOrders" Grid.Row="1" Margin="10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding zakaz_id}" Width="50"/>
+                    <!--<GridViewColumn Header="Номер" DisplayMemberBinding="{Binding zakaz_id}" Width="50"/>-->
                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding date, StringFormat='{}{0:dd.MM.yyyy}'}" Width="100"/>
                     <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding STATUS.name}" Width="150"/>
-                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding TotalAmount}" Width="100"/>
-                    <!--<GridViewColumn Header="Действия" Width="150">
+                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding TotalAmount, StringFormat='{}{0:N2} ₽'}" Width="100"/>
+                    <GridViewColumn Header="Действия" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Подробности" Click="BtnDetails_Click" Tag="{Binding zakaz_id}"/>
+                                <Button Content="Детали" 
+                                        Click="BtnDetails_Click" 
+                                        Tag="{Binding zakaz_id}"
+                                        Background="#FF75425E"
+                                        Foreground="#FFECC286"
+                                        BorderBrush="Black"
+                                        FontWeight="Bold"
+                                        Padding="5"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>-->
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Назад" HorizontalAlignment="Left" Margin="696,0,0,0" VerticalAlignment="Center" Width="94" Click="Button_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286" FontWeight="Bold"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="680,0,0,0" VerticalAlignment="Center" Width="94" Click="Button_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286" FontWeight="Bold"/>
     </Grid>
 </Page>

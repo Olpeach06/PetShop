@@ -5,12 +5,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PetShop.Pages
 {
     public partial class AdminOrdersPage : Page
     {
         public List<STATUS> StatusList { get; set; }
+        private ZAKAZ _selectedOrder;
 
         public AdminOrdersPage()
         {
@@ -69,17 +71,66 @@ namespace PetShop.Pages
 
                 if (order != null && order.status_id != selectedStatus.status_id)
                 {
-                    order.status_id = selectedStatus.status_id;
-                    try
+                    // Сохраняем выбранный заказ для отмены изменений
+                    _selectedOrder = order;
+
+                    // Подтверждение изменения статуса
+                    var result = MessageBox.Show($"Изменить статус заказа #{order.zakaz_id} на '{selectedStatus.name}'?",
+                                              "Подтверждение",
+                                              MessageBoxButton.YesNo,
+                                              MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.Yes)
                     {
-                        AppConnect.model0db.SaveChanges();
+                        try
+                        {
+                            order.status_id = selectedStatus.status_id;
+                            order.STATUS = selectedStatus;
+                            AppConnect.model0db.SaveChanges();
+
+                            // Обновляем отображение
+                            dgOrders.Items.Refresh();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Ошибка при обновлении статуса: {ex.Message}", "Ошибка",
+                                            MessageBoxButton.OK, MessageBoxImage.Error);
+                            // Откатываем изменения
+                            AppConnect.model0db.Entry(order).Reload();
+                            comboBox.SelectedValue = order.status_id;
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show($"Ошибка при обновлении статуса: {ex.Message}", "Ошибка",
-                                        MessageBoxButton.OK, MessageBoxImage.Error);
-                        LoadData();
+                        // Отменяем выбор в комбобоксе
+                        comboBox.SelectedValue = order.status_id;
                     }
+                }
+            }
+        }
+
+        private void DgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Сохраняем выбранный заказ при изменении выделения
+            _selectedOrder = dgOrders.SelectedItem as ZAKAZ;
+        }
+        private void BtnSaveStatus_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var order = button?.Tag as ZAKAZ;
+
+            if (order != null)
+            {
+                try
+                {
+                    AppConnect.model0db.SaveChanges();
+                    dgOrders.Items.Refresh();
+                    button.Background = Brushes.LightGreen;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка сохранения: {ex.Message}");
+                    button.Background = Brushes.LightPink;
                 }
             }
         }
