@@ -30,8 +30,7 @@ namespace PetShop.Pages
 
             try
             {
-                var user = AppConnect.model0db.USERS
-                    .FirstOrDefault(u => u.email == email && u.password == password);
+                var user = AppConnect.model0db.USERS.FirstOrDefault(u => u.email == email && u.password == password);
 
                 if (user == null)
                 {
@@ -40,13 +39,14 @@ namespace PetShop.Pages
                     return;
                 }
 
+                // Проверка роли пользователя
                 if (user.role_id == 1) // Администратор
                 {
-                    AppFrame.frameMain.Navigate(new AdminMainPage());
+                    AppFrame.frameMain.Navigate(new AdminMainPage()); // Переход администратора на свою страницу
                 }
-                else // Пользователь
+                else // Обычный пользователь
                 {
-                    AppFrame.frameMain.Navigate(new UserMainPage(user, AppFrame.frameMain));
+                    AppFrame.frameMain.Navigate(new CatalogPage(user)); // Переход пользователя на корзину
                 }
             }
             catch (Exception ex)

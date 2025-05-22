@@ -5,19 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PetShop"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="515" d:DesignWidth="800"
       Title="CatalogPage">
 
     <Grid Background="#FF5F344C">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- Навигационная панель -->
             <RowDefinition Height="Auto"/>
+            <!-- Фильтры -->
             <RowDefinition Height="*"/>
+            <!-- Список товаров -->
         </Grid.RowDefinitions>
-        <Button Content="Назад" Click="BtnBack_Click" Margin="659,22,44,10" BorderBrush="Black" Foreground="#FFECC286" FontWeight="Bold" Background="#FF75425E"/>
+
+        <!-- Навигационная панель (в самом верху) -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF5F344C">
+            <Button Content="Каталог" Style="{StaticResource MenuButton}" Click="BtnCatalog_Click" Foreground="#FFECC286"/>
+            <Button Content="Корзина" Style="{StaticResource MenuButton}" Click="BtnCart_Click" Foreground="#FFECC286"/>
+            <Button Content="Заказы" Style="{StaticResource MenuButton}" Click="BtnOrders_Click" Foreground="#FFECC286"/>
+            <Button Content="Выйти" Style="{StaticResource MenuButton}" Click="BtnLogout_Click" Foreground="#FFECC286"/>
+        </StackPanel>
 
         <!-- Фильтры -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="8,17,142,3" RenderTransformOrigin="0.5,0.5">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="8,10,142,10" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -27,12 +37,12 @@
                 </TransformGroup>
             </StackPanel.RenderTransform>
             <ComboBox x:Name="cmbCategories" Width="200" Margin="5"
-          DisplayMemberPath="name"
-          SelectionChanged="CmbCategories_SelectionChanged"/>
+                      DisplayMemberPath="name"
+                      SelectionChanged="CmbCategories_SelectionChanged"/>
 
             <ComboBox x:Name="cmbFirms" Width="200" Margin="5"
-          DisplayMemberPath="name"
-          SelectionChanged="CmbFirms_SelectionChanged"/>
+                      DisplayMemberPath="name"
+                      SelectionChanged="CmbFirms_SelectionChanged"/>
 
             <TextBox x:Name="txtSearch" Width="200" Margin="5" TextChanged="TxtSearch_TextChanged"/>
         </StackPanel>
@@ -50,7 +60,6 @@
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <!-- Используем свойство CurrentPhoto для вывода изображения -->
                             <Image Grid.Column="0" Source="{Binding CurrentPhoto}" 
                                    Height="80" Width="80" Stretch="UniformToFill"/>
 

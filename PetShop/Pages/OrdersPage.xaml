@@ -8,15 +8,20 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OrdersPage">
 
-    <Grid Background="#FF5F344C">
+    <Grid Background="#FF5F344C" Margin="0,0,0,-38">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Мои заказы" Grid.Row="0" FontSize="18" FontWeight="Bold" Margin="10,10,352,10" Foreground="#FFECC286"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF5F344C">
+            <Button Content="Каталог" Style="{StaticResource MenuButton}" Click="BtnCatalog_Click" Foreground="#FFECC286"/>
+            <Button Content="Корзина" Style="{StaticResource MenuButton}" Click="BtnCart_Click" Foreground="#FFECC286"/>
+            <Button Content="Заказы" Style="{StaticResource MenuButton}" Click="BtnOrders_Click" Foreground="#FFECC286"/>
+            <Button Content="Выйти" Style="{StaticResource MenuButton}" Click="BtnLogout_Click" Foreground="#FFECC286"/>
+        </StackPanel>
 
-        <ListView x:Name="lvOrders" Grid.Row="1" Margin="10">
+        <ListView x:Name="lvOrders" Grid.Row="1" Margin="10,10,10,10">
             <ListView.View>
                 <GridView>
                     <!--<GridViewColumn Header="Номер" DisplayMemberBinding="{Binding zakaz_id}" Width="50"/>-->
@@ -40,6 +45,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Назад" HorizontalAlignment="Left" Margin="680,0,0,0" VerticalAlignment="Center" Width="94" Click="Button_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286" FontWeight="Bold"/>
+        <!--<Button Content="Назад" HorizontalAlignment="Left" Margin="680,0,0,0" VerticalAlignment="Center" Width="94" Click="Button_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286" FontWeight="Bold"/>-->
     </Grid>
 </Page>

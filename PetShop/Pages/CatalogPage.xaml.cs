@@ -133,5 +133,25 @@ namespace PetShop.Pages
 
             lvProducts.ItemsSource = filtered.ToList();
         }
+
+        private void BtnCatalog_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CatalogPage(_currentUser));
+        }
+
+        private void BtnCart_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CartPage(_currentUser));
+        }
+
+        private void BtnOrders_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new OrdersPage(_currentUser));
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
+        }
     }
 }

@@ -9,12 +9,24 @@
 
     <Grid Background="#FF5F344C">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <!-- Панель навигации -->
+            <RowDefinition Height="*"/>
+            <!-- Список товаров -->
+            <RowDefinition Height="Auto"/>
+            <!-- Итого и кнопка заказа -->
         </Grid.RowDefinitions>
 
-        <!-- Список товаров -->
-        <ListView x:Name="lvCartItems" Grid.Row="0" Margin="10">
+        <!-- Навигационная панель (в самом верху) -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF5F344C">
+            <Button Content="Каталог" Style="{StaticResource MenuButton}" Click="BtnCatalog_Click" Foreground="#FFECC286"/>
+            <Button Content="Корзина" Style="{StaticResource MenuButton}" Click="BtnCart_Click" Foreground="#FFECC286"/>
+            <Button Content="Заказы" Style="{StaticResource MenuButton}" Click="BtnOrders_Click" Foreground="#FFECC286"/>
+            <Button Content="Выйти" Style="{StaticResource MenuButton}" Click="BtnLogout_Click" Foreground="#FFECC286"/>
+        </StackPanel>
+
+        <!-- Список товаров (занимает все доступное пространство) -->
+        <ListView x:Name="lvCartItems" Grid.Row="1" Margin="10">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="750">
@@ -26,7 +38,6 @@
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Изменённое отображение изображения: используем CurrentPhoto -->
                         <Image Grid.Column="0" Source="{Binding PRODUCTS.CurrentPhoto}" 
                                Height="80" Width="80" Stretch="UniformToFill"/>
 
@@ -46,12 +57,11 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Итого и кнопка оформления заказа -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+        <!-- Итого и кнопка оформления заказа (внизу) -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <TextBlock x:Name="txtTotal" FontSize="16" FontWeight="Bold" Margin="0,0,20,0" Foreground="#FFECC286"/>
             <Button Content="Оформить заказ" Background="#FF75425E" Foreground="#FFECC286"
                     Padding="20,5" FontWeight="Bold" Click="BtnCheckout_Click" BorderBrush="Black"/>
         </StackPanel>
-        <Button Content="Назад" HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" Width="107" Click="Button_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286" FontWeight="Bold"/>
     </Grid>
 </Page>

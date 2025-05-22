@@ -102,5 +102,26 @@ namespace PetShop.Pages
         {
             NavigationService.GoBack();
         }
+
+        private void BtnCatalog_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CatalogPage(_currentUser));
+        }
+
+        private void BtnCart_Click(object sender, RoutedEventArgs e)
+        {
+            // Уже находимся в корзине, просто обновляем данные
+            LoadCartItems();
+        }
+
+        private void BtnOrders_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new OrdersPage(_currentUser));
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AuthorizationPage());
+        }
     }
 }
