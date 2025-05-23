@@ -7,7 +7,7 @@
       mc:Ignorable="d" d:DesignWidth="800"
       Title="AddEditProductPage" Height="534">
 
-    <Grid Margin="10,10,10,-68" Background="#FF5F344C">
+    <Grid Margin="10,10,10,-34" Background="#FF5F344C">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -33,7 +33,7 @@
 
         <Label Content="Производитель:" Grid.Row="3" Foreground="#FFECC286"/>
         <ComboBox x:Name="cmbFirms" DisplayMemberPath="name" SelectedValuePath="firm_id"
-                  SelectedValue="{Binding firm_id}" Grid.Row="3" Margin="0,25,0,0" Height="25"/>
+                  SelectedValue="{Binding firm_id}" Grid.Row="3" Margin="0,25,0,0" Height="25" SelectionChanged="cmbFirms_SelectionChanged"/>
 
         <Label Content="Тип:" Grid.Row="4" Foreground="#FFECC286"/>
         <ComboBox x:Name="cmbTypes" DisplayMemberPath="name" SelectedValuePath="type_id"
@@ -57,11 +57,11 @@
                     Click="BtnSelectImage_Click" BorderBrush="Black" Foreground="#FFECC286" FontWeight="Bold" Background="#FF75425E" Height="35"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,6,6">
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,61,11,34">
             <Button x:Name="btnSave" Content="Сохранить" Width="100" Margin="0,0,10,0" 
-                    Click="BtnSave_Click" Foreground="#FFECC286" BorderBrush="Black" Background="#FF75425E"/>
+                    Click="BtnSave_Click" Foreground="#FFECC286" BorderBrush="Black" Background="#FF75425E" Height="35"/>
             <Button x:Name="btnCancel" Content="Отмена" Width="100" 
-                    Click="BtnCancel_Click" Foreground="#FFECC286" BorderBrush="Black" Background="#FF75425E"/>
+                    Click="BtnCancel_Click" Foreground="#FFECC286" BorderBrush="Black" Background="#FF75425E" Height="35"/>
         </StackPanel>
     </Grid>
 </Page>

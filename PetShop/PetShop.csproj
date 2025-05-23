@@ -245,6 +245,8 @@
     <Resource Include="Images\kormFRISKIES.jpg" />
     <Resource Include="Images\kormACANA.jpg" />
     <Resource Include="Images\picture.jpg" />
+    <Resource Include="Images\kormFish.jpg" />
+    <Resource Include="Images\pr.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

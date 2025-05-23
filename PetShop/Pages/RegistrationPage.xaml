@@ -13,13 +13,13 @@
                       HorizontalAlignment="Center" Margin="0,0,0,20" Foreground="#FFECC286"/>
 
             <TextBlock Text="Фамилия*" Margin="0,5,0,0" Foreground="#FFECC286"/>
-            <TextBox x:Name="txtLastName"/>
+            <TextBox x:Name="txtLastName" MaxLength="50" TextChanged="OnTextChanged"/>
 
             <TextBlock Text="Имя*" Margin="0,5,0,0" Foreground="#FFECC286"/>
-            <TextBox x:Name="txtFirstName"/>
+            <TextBox x:Name="txtFirstName" MaxLength="50" TextChanged="OnTextChanged"/>
 
             <TextBlock Text="Отчество" Margin="0,5,0,0" Foreground="#FFECC286"/>
-            <TextBox x:Name="txtPatronymic"/>
+            <TextBox x:Name="txtPatronymic" MaxLength="50" TextChanged="OnTextChanged"/>
 
             <TextBlock Text="Email*" Margin="0,5,0,0" Foreground="#FFECC286"/>
             <TextBox x:Name="txtEmail"/>

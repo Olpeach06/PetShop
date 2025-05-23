@@ -61,7 +61,7 @@
         </ListView>
 
         <!-- Итого и кнопка назад -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="603,10,0,10">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="543,9,0,11">
             <TextBlock Text="Итого:" FontWeight="Bold" Margin="0,0,10,0" Foreground="#FFECC286"/>
             <TextBlock x:Name="txtTotal" FontWeight="Bold" FontSize="16" Foreground="#FFECC286"/>
             <Button Content="Назад" Margin="20,0,0,0" Width="100" Click="BtnBack_Click" BorderBrush="Black" Background="#FF75425E" Foreground="#FFECC286"/>

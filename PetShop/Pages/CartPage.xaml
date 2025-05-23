@@ -33,25 +33,29 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
                         <Image Grid.Column="0" Source="{Binding PRODUCTS.CurrentPhoto}" 
-                               Height="80" Width="80" Stretch="UniformToFill"/>
+                       Height="80" Width="80" Stretch="UniformToFill"/>
 
                         <TextBlock Grid.Column="1" Text="{Binding PRODUCTS.name}" 
-                                   VerticalAlignment="Center" Margin="10,0,0,0"/>
+                           VerticalAlignment="Center" Margin="10,0,0,0"/>
 
-                        <TextBlock Grid.Column="2" Text="{Binding quantity}" 
-                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Button Content="-" Width="30" Margin="5" Click="DecreaseQty_Click" Tag="{Binding basket_id}"/>
+                            <TextBlock x:Name="txtQty" Text="{Binding quantity}" Margin="5" />
+                            <Button Content="+" Width="30" Margin="5" Click="IncreaseQty_Click" Tag="{Binding basket_id}"/>
+                        </StackPanel>
 
                         <TextBlock Grid.Column="3" Text="{Binding PRODUCTS.price, StringFormat={}{0:N2} ₽}" 
-                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                         <Button Grid.Column="4" Content="Удалить" Background="red" Foreground="White"
-                                Click="BtnRemove_Click" Tag="{Binding basket_id}"/>
+                        Click="BtnRemove_Click" Tag="{Binding basket_id}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -106,5 +106,14 @@ namespace PetShop.Pages
                 return false;
             }
         }
+
+        private void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null && textBox.Text.Length >= 50)
+            {
+                MessageBox.Show("Максимальная длина фамилии, имени или отчества составляет 50 символов.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

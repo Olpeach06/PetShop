@@ -73,7 +73,7 @@
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding price, StringFormat='{}{0:N2} ₽'}" 
                                     VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding quantity, StringFormat='Остаток: {0} шт.'}" 
+                                <TextBlock Text="{Binding quantity, StringFormat='Осталось: {0} шт.'}" 
                                      VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </StackPanel>
 

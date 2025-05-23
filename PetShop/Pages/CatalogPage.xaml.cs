@@ -61,15 +61,30 @@ namespace PetShop.Pages
 
             if (product == null) return;
 
+            // Проверяем, есть ли достаточное количество товара на складе
+            if (product.quantity <= 0)
+            {
+                MessageBox.Show("Данный товар временно отсутствует в продаже.", "Нет в наличии", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
             var existingItem = AppConnect.model0db.BASKET
                 .FirstOrDefault(b => b.users_id == _currentUser.users_id && b.product_id == productId);
 
             if (existingItem != null)
             {
-                existingItem.quantity++;
+                // Проверяем, хватает ли товара на складе, чтобы увеличить количество
+                if (existingItem.quantity + 1 > product.quantity)
+                {
+                    MessageBox.Show($"Макс. возможное количество товара '{product.name}' достигнуто ({product.quantity}).", "Ограничение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
+                existingItem.quantity++; // Увеличиваем количество в корзине
             }
             else
             {
+                // Добавляем новую позицию в корзину
                 var newItem = new BASKET
                 {
                     product_id = productId,
@@ -82,7 +97,7 @@ namespace PetShop.Pages
             try
             {
                 AppConnect.model0db.SaveChanges();
-                MessageBox.Show("Товар добавлен в корзину!");
+                MessageBox.Show("Товар добавлен в корзину!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

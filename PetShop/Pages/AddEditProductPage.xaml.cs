@@ -107,5 +107,10 @@ namespace PetShop.Pages
                 imgPreview.Source = new BitmapImage(new Uri(_currentProduct.image));
             }
         }
+
+        private void cmbFirms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

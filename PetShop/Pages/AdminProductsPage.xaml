@@ -22,7 +22,7 @@
 
         <!-- Список товаров -->
         <DataGrid x:Name="dgProducts" Grid.Row="1" Margin="10" AutoGenerateColumns="False"
-                 CanUserAddRows="False" SelectionMode="Single">
+          CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер" Binding="{Binding product_id}" Width="Auto"/>
                 <DataGridTextColumn Header="Название" Binding="{Binding name}" Width="*"/>

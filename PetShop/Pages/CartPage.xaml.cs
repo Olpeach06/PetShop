@@ -123,5 +123,42 @@ namespace PetShop.Pages
         {
             NavigationService.Navigate(new AuthorizationPage());
         }
+
+        // Увеличение количества товара
+        private void IncreaseQty_Click(object sender, RoutedEventArgs e)
+        {
+            var basketId = (int)((Button)sender).Tag;
+            var item = AppConnect.model0db.BASKET.Include(b => b.PRODUCTS).FirstOrDefault(b => b.basket_id == basketId);
+
+            if (item != null)
+            {
+                // Ограничиваем увеличение количества имеющимся запасом товара
+                if (item.quantity < item.PRODUCTS.quantity)
+                {
+                    item.quantity++;
+                    AppConnect.model0db.SaveChanges();
+                    LoadCartItems(); // Обновляем содержимое корзины
+                }
+                else
+                {
+                    MessageBox.Show("Нельзя добавить больше товара, чем есть в наличии!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        // Уменьшение количества товара
+        private void DecreaseQty_Click(object sender, RoutedEventArgs e)
+        {
+            var basketId = (int)((Button)sender).Tag;
+            var item = AppConnect.model0db.BASKET.Find(basketId);
+
+            if (item != null && item.quantity > 1)
+            {
+                // Уменьшаем количество товара на единицу
+                item.quantity--;
+                AppConnect.model0db.SaveChanges();
+                LoadCartItems(); // Обновляем содержимое корзины
+            }
+        }
     }
 }
