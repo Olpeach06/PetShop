@@ -17,7 +17,7 @@
         <!-- Панель фильтров -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
             <ComboBox x:Name="cmbStatus" Width="200" Margin="0,0,10,0"
-                      DisplayMemberPath="name" SelectedValuePath="status_id"/>
+                      DisplayMemberPath="Name" SelectedValuePath="StatusId"/>
             <Button Content="Применить фильтр" Click="BtnApplyFilter_Click" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E"/>
             <Button Content="Сбросить фильтр" Click="BtnResetFilter_Click" Margin="10,0,0,0" FontWeight="Bold" BorderBrush="Black" Background="#FF75425E"/>
         </StackPanel>
@@ -26,22 +26,22 @@
         <DataGrid x:Name="dgOrders" Grid.Row="1" AutoGenerateColumns="False" 
           SelectionMode="Single" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding zakaz_id}" Width="Auto"/>
-                <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat='{}{0:dd.MM.yyyy}'}" Width="100"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding ZakazId}" Width="Auto"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" Width="100"/>
 
                 <!-- Вот эти строки - замените ими старые колонки пользователя и суммы -->
                 <DataGridTextColumn Header="Пользователь" Binding="{Binding UserFullName}" Width="200"/>
                 <DataGridTextColumn Header="Сумма" Binding="{Binding TotalAmount, StringFormat='{}{0:N2} руб.'}" Width="120"/>
 
-                <DataGridTextColumn Header="Статус" Binding="{Binding STATUS.name}" Width="120"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Statuses.Name}" Width="120"/>
                 <DataGridTemplateColumn Header="Изменить статус" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox ItemsSource="{Binding DataContext.StatusList, RelativeSource={RelativeSource AncestorType=Page}}"
-                      SelectedValue="{Binding status_id, UpdateSourceTrigger=PropertyChanged}"
-                      DisplayMemberPath="name"
-                      SelectedValuePath="status_id"
+                      SelectedValue="{Binding StatusId, UpdateSourceTrigger=PropertyChanged}"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="StatusId"
                       SelectionChanged="StatusComboBox_SelectionChanged"
                       Width="120"/>
                                 <Button Content="✓" Click="BtnSaveStatus_Click" 

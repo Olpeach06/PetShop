@@ -21,13 +21,13 @@ namespace PetShop.Pages
 
         private void LoadProducts()
         {
-            AppConnect.model0db.PRODUCTS
-                .Include(p => p.CATEGORIES)
-                .Include(p => p.FIRM)
-                .Include(p => p.TYPE)
+            AppConnect.model0db.Products
+                .Include(p => p.Categories)
+                .Include(p => p.Firms)
+                .Include(p => p.TypeOfPr)
                 .Load();
 
-            dgProducts.ItemsSource = AppConnect.model0db.PRODUCTS.Local;
+            dgProducts.ItemsSource = AppConnect.model0db.Products.Local;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace PetShop.Pages
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var selectedProduct = dgProducts.SelectedItem as PRODUCTS;
+            var selectedProduct = dgProducts.SelectedItem as Products;
             if (selectedProduct != null)
             {
                 _adminFrame.Navigate(new AddEditProductPage(selectedProduct));
@@ -50,7 +50,7 @@ namespace PetShop.Pages
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var selectedProduct = dgProducts.SelectedItem as PRODUCTS;
+            var selectedProduct = dgProducts.SelectedItem as Products;
             if (selectedProduct == null)
             {
                 MessageBox.Show("Выберите товар для удаления.");
@@ -59,7 +59,7 @@ namespace PetShop.Pages
 
             // Подтверждение удаления
             var result = MessageBox.Show(
-                $"Вы уверены, что хотите удалить товар \"{selectedProduct.name}\"?",
+                $"Вы уверены, что хотите удалить товар \"{selectedProduct.Name}\"?",
                 "Подтверждение удаления",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question
@@ -69,7 +69,7 @@ namespace PetShop.Pages
             {
                 try
                 {
-                    AppConnect.model0db.PRODUCTS.Remove(selectedProduct); // Удаляем продукт из базы
+                    AppConnect.model0db.Products.Remove(selectedProduct); // Удаляем продукт из базы
                     AppConnect.model0db.SaveChanges(); // Сохраняем изменения
                     LoadProducts(); // Обновляем список товаров
                     MessageBox.Show("Товар успешно удалён.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);

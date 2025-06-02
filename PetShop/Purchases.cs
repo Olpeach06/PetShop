@@ -12,19 +12,16 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class PURCHASE
+    public partial class Purchases
     {
-        public int purchase_id { get; set; }
-        public int zakaz_id { get; set; }
-        public int product_id { get; set; }
-        public int quantity { get; set; }
+        public int PurchaseId { get; set; }
+        public int ZakazId { get; set; }
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
     
-        public virtual PRODUCTS PRODUCTS { get; set; }
-        public virtual PRODUCTS PRODUCTS1 { get; set; }
-        public virtual ZAKAZ ZAKAZ { get; set; }
-    }
-    public partial class PURCHASE
-    {
-        public decimal Sum => (decimal)(quantity * PRODUCTS.price);
+        public virtual Products Products { get; set; }
+        public virtual Zakazy Zakazy { get; set; }
+
+        public decimal Sum => Quantity * Products.Price;
     }
 }

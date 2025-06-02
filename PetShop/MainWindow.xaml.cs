@@ -21,7 +21,7 @@ namespace PetShop
         public MainWindow()
         {
             InitializeComponent();
-            AppConnect.model0db = new PetShopEntities1();
+            AppConnect.model0db = new PetShopOnEntities();
             AppFrame.frameMain = MainFrame; // Инициализация фрейма
             AppFrame.frameMain.Navigate(new Pages.AuthorizationPage());
         }

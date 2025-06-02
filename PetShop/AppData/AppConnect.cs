@@ -8,6 +8,6 @@ namespace PetShop.AppData
 {
     internal class AppConnect
     {
-        public static PetShopEntities1 model0db;
+        public static PetShopOnEntities model0db;
     }
 }

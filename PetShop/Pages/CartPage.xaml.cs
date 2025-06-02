@@ -9,9 +9,9 @@ namespace PetShop.Pages
 {
     public partial class CartPage : Page
     {
-        private USERS _currentUser;
+        private Users _currentUser;
 
-        public CartPage(USERS user)
+        public CartPage(Users user)
         {
             InitializeComponent();
             _currentUser = user;
@@ -20,25 +20,25 @@ namespace PetShop.Pages
 
         private void LoadCartItems()
         {
-            var cartItems = AppConnect.model0db.BASKET
-                .Where(b => b.users_id == _currentUser.users_id)
-                .Include(b => b.PRODUCTS)
+            var cartItems = AppConnect.model0db.Baskets
+                .Where(b => b.UserId == _currentUser.UsersId)
+                .Include(b => b.Products)
                 .ToList();
 
             lvCartItems.ItemsSource = cartItems;
 
-            decimal total = cartItems.Sum(item => item.quantity * item.PRODUCTS.price);
+            decimal total = cartItems.Sum(item => item.Quantity * item.Products.Price);
             txtTotal.Text = $"Итого: {total:C}";
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
             var basketId = (int)((Button)sender).Tag;
-            var itemToRemove = AppConnect.model0db.BASKET.Find(basketId);
+            var itemToRemove = AppConnect.model0db.Baskets.Find(basketId);
 
             if (itemToRemove != null)
             {
-                AppConnect.model0db.BASKET.Remove(itemToRemove);
+                AppConnect.model0db.Baskets.Remove(itemToRemove);
                 AppConnect.model0db.SaveChanges();
                 LoadCartItems();
             }
@@ -46,8 +46,8 @@ namespace PetShop.Pages
 
         private void BtnCheckout_Click(object sender, RoutedEventArgs e)
         {
-            var cartItems = AppConnect.model0db.BASKET
-                .Where(b => b.users_id == _currentUser.users_id)
+            var cartItems = AppConnect.model0db.Baskets
+                .Where(b => b.UserId == _currentUser.UsersId)
                 .ToList();
 
             if (!cartItems.Any())
@@ -59,34 +59,34 @@ namespace PetShop.Pages
             try
             {
                 // Создаем заказ
-                var newOrder = new ZAKAZ
+                var newOrder = new Zakazy
                 {
-                    users_id = _currentUser.users_id,
-                    date = DateTime.Now,
-                    status_id = 1 // "В обработке"
+                    UserId = _currentUser.UsersId,
+                    Date = DateTime.Now,
+                    StatusId = 1 // "В обработке"
                 };
 
-                AppConnect.model0db.ZAKAZ.Add(newOrder);
+                AppConnect.model0db.Zakazy.Add(newOrder);
                 AppConnect.model0db.SaveChanges();
 
                 // Добавляем товары в заказ
                 foreach (var item in cartItems)
                 {
-                    var purchase = new PURCHASE
+                    var purchase = new Purchases
                     {
-                        zakaz_id = newOrder.zakaz_id,
-                        product_id = item.product_id,
-                        quantity = item.quantity
+                        ZakazId = newOrder.ZakazId,
+                        ProductId = item.ProductId,
+                        Quantity = item.Quantity
                     };
-                    AppConnect.model0db.PURCHASE.Add(purchase);
+                    AppConnect.model0db.Purchases.Add(purchase);
 
                     // Уменьшаем количество товара на складе
-                    var product = AppConnect.model0db.PRODUCTS.Find(item.product_id);
-                    product.quantity -= item.quantity;
+                    var product = AppConnect.model0db.Products.Find(item.ProductId);
+                    product.Quantity -= item.Quantity;
                 }
 
                 // Очищаем корзину
-                AppConnect.model0db.BASKET.RemoveRange(cartItems);
+                AppConnect.model0db.Baskets.RemoveRange(cartItems);
                 AppConnect.model0db.SaveChanges();
 
                 MessageBox.Show("Заказ успешно оформлен!");
@@ -128,14 +128,14 @@ namespace PetShop.Pages
         private void IncreaseQty_Click(object sender, RoutedEventArgs e)
         {
             var basketId = (int)((Button)sender).Tag;
-            var item = AppConnect.model0db.BASKET.Include(b => b.PRODUCTS).FirstOrDefault(b => b.basket_id == basketId);
+            var item = AppConnect.model0db.Baskets.Include(b => b.Products).FirstOrDefault(b => b.BasketId == basketId);
 
             if (item != null)
             {
                 // Ограничиваем увеличение количества имеющимся запасом товара
-                if (item.quantity < item.PRODUCTS.quantity)
+                if (item.Quantity < item.Products.Quantity)
                 {
-                    item.quantity++;
+                    item.Quantity++;
                     AppConnect.model0db.SaveChanges();
                     LoadCartItems(); // Обновляем содержимое корзины
                 }
@@ -150,12 +150,12 @@ namespace PetShop.Pages
         private void DecreaseQty_Click(object sender, RoutedEventArgs e)
         {
             var basketId = (int)((Button)sender).Tag;
-            var item = AppConnect.model0db.BASKET.Find(basketId);
+            var item = AppConnect.model0db.Baskets.Find(basketId);
 
-            if (item != null && item.quantity > 1)
+            if (item != null && item.Quantity > 1)
             {
                 // Уменьшаем количество товара на единицу
-                item.quantity--;
+                item.Quantity--;
                 AppConnect.model0db.SaveChanges();
                 LoadCartItems(); // Обновляем содержимое корзины
             }

@@ -12,16 +12,13 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class BASKET
+    public partial class AspNetUserClaims
     {
-        public int basket_id { get; set; }
-        public int product_id { get; set; }
-        public int users_id { get; set; }
-        public int quantity { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual PRODUCTS PRODUCTS { get; set; }
-        public virtual PRODUCTS PRODUCTS1 { get; set; }
-        public virtual USERS USERS { get; set; }
-        public virtual USERS USERS1 { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

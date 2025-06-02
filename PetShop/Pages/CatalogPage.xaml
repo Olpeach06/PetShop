@@ -37,12 +37,12 @@
                 </TransformGroup>
             </StackPanel.RenderTransform>
             <ComboBox x:Name="cmbCategories" Width="200" Margin="5"
-                      DisplayMemberPath="name"
-                      SelectionChanged="CmbCategories_SelectionChanged"/>
+          DisplayMemberPath="Name"
+          SelectionChanged="CmbCategories_SelectionChanged"/>
 
             <ComboBox x:Name="cmbFirms" Width="200" Margin="5"
-                      DisplayMemberPath="name"
-                      SelectionChanged="CmbFirms_SelectionChanged"/>
+          DisplayMemberPath="Name"
+          SelectionChanged="CmbFirms_SelectionChanged"/>
 
             <TextBox x:Name="txtSearch" Width="200" Margin="5" TextChanged="TxtSearch_TextChanged"/>
         </StackPanel>
@@ -64,22 +64,22 @@
                                    Height="80" Width="80" Stretch="UniformToFill"/>
 
                             <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                <TextBlock Text="{Binding name}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding description}" TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding FIRM.name}"/>
-                                <TextBlock Text="{Binding CATEGORIES.name}"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Firms.Name}"/>
+                                <TextBlock Text="{Binding Categories.Name}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding price, StringFormat='{}{0:N2} ₽'}" 
+                                <TextBlock Text="{Binding Price, StringFormat='{}{0:N2} ₽'}" 
                                     VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding quantity, StringFormat='Осталось: {0} шт.'}" 
+                                <TextBlock Text="{Binding Quantity, StringFormat='Осталось: {0} шт.'}" 
                                      VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </StackPanel>
 
                             <Button Grid.Column="3" Content="В корзину" 
                                     Background="#FF5D196D" Foreground="White"
-                                    Click="BtnAddToCart_Click" Tag="{Binding product_id}"/>
+                                    Click="BtnAddToCart_Click" Tag="{Binding ProductId}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

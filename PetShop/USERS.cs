@@ -12,31 +12,27 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class USERS
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USERS()
+        public Users()
         {
-            this.BASKET = new HashSet<BASKET>();
-            this.BASKET1 = new HashSet<BASKET>();
-            this.ZAKAZ = new HashSet<ZAKAZ>();
+            this.Baskets = new HashSet<Baskets>();
+            this.Zakazy = new HashSet<Zakazy>();
         }
     
-        public int users_id { get; set; }
-        public string last_name { get; set; }
-        public string first_name { get; set; }
-        public string patronymic { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
-        public Nullable<int> role_id { get; set; }
+        public int UsersId { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Patronymic { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public int RoleId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BASKET> BASKET { get; set; }
+        public virtual ICollection<Baskets> Baskets { get; set; }
+        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BASKET> BASKET1 { get; set; }
-        public virtual ROLE ROLE { get; set; }
-        public virtual ROLE ROLE1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ZAKAZ> ZAKAZ { get; set; }
+        public virtual ICollection<Zakazy> Zakazy { get; set; }
     }
 }

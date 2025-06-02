@@ -6,10 +6,10 @@ namespace PetShop.Pages
 {
     public partial class UserMainPage : Page
     {
-        private USERS _currentUser;
+        private Users _currentUser;
         private Frame _userFrame; // Добавляем поле для фрейма
 
-        public UserMainPage(USERS user, Frame userFrame) // Добавляем параметр
+        public UserMainPage(Users user, Frame userFrame) // Добавляем параметр
         {
             InitializeComponent();
             _currentUser = user;

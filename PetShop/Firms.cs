@@ -12,15 +12,15 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class Firms
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
+        public Firms()
         {
             this.Products = new HashSet<Products>();
         }
     
-        public int CategoryId { get; set; }
+        public int FirmId { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -19,17 +19,17 @@ namespace PetShop.Pages
 {
     public partial class AddEditProductPage : Page
     {
-        private PRODUCTS _currentProduct;
+        private Products _currentProduct;
 
         public AddEditProductPage()
         {
             InitializeComponent();
-            _currentProduct = new PRODUCTS();
+            _currentProduct = new Products();
             DataContext = _currentProduct;
             LoadComboBoxData();
         }
 
-        public AddEditProductPage(PRODUCTS product)
+        public AddEditProductPage(Products product)
         {
             InitializeComponent();
             _currentProduct = product;
@@ -42,13 +42,13 @@ namespace PetShop.Pages
             try
             {
                 // Загрузка категорий
-                cmbCategories.ItemsSource = AppConnect.model0db.CATEGORIES.ToList();
+                cmbCategories.ItemsSource = AppConnect.model0db.Categories.ToList();
 
                 // Загрузка производителей
-                cmbFirms.ItemsSource = AppConnect.model0db.FIRM.ToList();
+                cmbFirms.ItemsSource = AppConnect.model0db.Firms.ToList();
 
                 // Загрузка типов
-                cmbTypes.ItemsSource = AppConnect.model0db.TYPE.ToList();
+                cmbTypes.ItemsSource = AppConnect.model0db.TypeOfPr.ToList();
             }
             catch (Exception ex)
             {
@@ -60,20 +60,20 @@ namespace PetShop.Pages
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             // Проверка обязательных полей
-            if (string.IsNullOrWhiteSpace(_currentProduct.name) ||
-                _currentProduct.price <= 0 ||
-                _currentProduct.quantity < 0 ||
-                _currentProduct.category_id == 0 ||
-                _currentProduct.firm_id == 0 ||
-                _currentProduct.type_id == 0)
+            if (string.IsNullOrWhiteSpace(_currentProduct.Name) ||
+                _currentProduct.Price <= 0 ||
+                _currentProduct.Quantity < 0 ||
+                _currentProduct.CategoryId == 0 ||
+                _currentProduct.FirmId == 0 ||
+                _currentProduct.TypeOfPrTypeId == 0)
             {
                 MessageBox.Show("Пожалуйста, заполните все обязательные поля!", "Ошибка",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (_currentProduct.product_id == 0)
-                AppConnect.model0db.PRODUCTS.Add(_currentProduct);
+            if (_currentProduct.ProductId == 0)
+                AppConnect.model0db.Products.Add(_currentProduct);
 
             try
             {
@@ -103,8 +103,8 @@ namespace PetShop.Pages
 
             if (dialog.ShowDialog() == true)
             {
-                _currentProduct.image = dialog.FileName;
-                imgPreview.Source = new BitmapImage(new Uri(_currentProduct.image));
+                _currentProduct.Image = dialog.FileName;
+                imgPreview.Source = new BitmapImage(new Uri(_currentProduct.Image));
             }
         }
 

@@ -12,18 +12,13 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class STATUS
+    public partial class AspNetUserLogins
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public STATUS()
-        {
-            this.ZAKAZ = new HashSet<ZAKAZ>();
-        }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string ProviderDisplayName { get; set; }
+        public string UserId { get; set; }
     
-        public int status_id { get; set; }
-        public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ZAKAZ> ZAKAZ { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

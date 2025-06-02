@@ -4,34 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2346edbd022a484ba0f740825dbd9f4f" Name="Diagram1">
-        <EntityTypeShape EntityType="PetShopModel.BASKET" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.CATEGORIES" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.FIRM" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.PRODUCTS" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.PURCHASE" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.ROLE" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.STATUS" Width="1.5" PointX="3.75" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.TYPE" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.USERS" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetShopModel.ZAKAZ" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
-        <AssociationConnector Association="PetShopModel.FK__BASKET__product___3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__BASKET__product___59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__BASKET__users_id__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__BASKET__users_id__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__catego__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__catego__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__firm_i__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__firm_i__5BE2A6F2" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__type_i__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PRODUCTS__type_i__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PURCHASE__produc__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PURCHASE__produc__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__PURCHASE__zakaz___47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__USERS__role__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__USERS__role__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__ZAKAZ__status_id__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="PetShopModel.FK__ZAKAZ__users_id__4316F928" ManuallyRouted="false" />
+      <Diagram DiagramId="56fee8b3b0bf4d398b2e4feb949e23d8" Name="Diagram1">
+        <EntityTypeShape EntityType="PetShopOnModel.C__EFMigrationsHistory" Width="1.5" PointX="2.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.AspNetRoleClaims" Width="1.5" PointX="8" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.AspNetRoles" Width="1.5" PointX="5.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.AspNetUserClaims" Width="1.5" PointX="10.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.AspNetUserLogins" Width="1.5" PointX="10.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.AspNetUsers" Width="1.5" PointX="8" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.AspNetUserTokens" Width="1.5" PointX="10.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Baskets" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Categories" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Firms" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Products" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Purchases" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Roles" Width="1.5" PointX="1.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Statuses" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.TypeOfPr" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Users" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetShopOnModel.Zakazy" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <AssociationConnector Association="PetShopOnModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_AspNetUserClaims_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_AspNetUserLogins_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_AspNetUserTokens_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Baskets_Products_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Baskets_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Products_Categories_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Products_Firms_FirmId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Products_TypeOfPr_TypeOfPrTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Purchases_Products_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Purchases_Zakazy_ZakazId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Users_Roles_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Zakazy_Statuses_StatusId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.FK_Zakazy_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PetShopOnModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

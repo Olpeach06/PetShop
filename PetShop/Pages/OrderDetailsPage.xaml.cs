@@ -19,9 +19,9 @@ namespace PetShop.Pages
 {
     public partial class OrderDetailsPage : Page
     {
-        private ZAKAZ _currentOrder;
+        private Zakazy _currentOrder;
 
-        public OrderDetailsPage(ZAKAZ order)
+        public OrderDetailsPage(Zakazy order)
         {
             InitializeComponent();
             _currentOrder = order;
@@ -32,9 +32,9 @@ namespace PetShop.Pages
 
         private void LoadOrderItems()
         {
-            var items = AppConnect.model0db.PURCHASE
-                .Where(p => p.zakaz_id == _currentOrder.zakaz_id)
-                .Include(p => p.PRODUCTS)
+            var items = AppConnect.model0db.Purchases
+                .Where(p => p.ZakazId == _currentOrder.ZakazId)
+                .Include(p => p.Products) // Важно: загружаем связанный товар
                 .ToList();
 
             lvItems.ItemsSource = items;
@@ -42,9 +42,9 @@ namespace PetShop.Pages
 
         private void CalculateTotal()
         {
-            decimal total = AppConnect.model0db.PURCHASE
-                .Where(p => p.zakaz_id == _currentOrder.zakaz_id)
-                .Sum(p => p.quantity * p.PRODUCTS.price);
+            decimal total = AppConnect.model0db.Purchases
+                .Where(p => p.ZakazId == _currentOrder.ZakazId)
+                .Sum(p => p.Quantity * p.Products.Price);
 
             txtTotal.Text = total.ToString("C");
         }

@@ -25,33 +25,33 @@
         <TextBlock Text="Редактирование товара" Grid.Row="0" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#FFECC286"/>
 
         <Label Content="Название:" Grid.Row="1" Foreground="#FFECC286"/>
-        <TextBox x:Name="txtName" Text="{Binding name}" Grid.Row="1" Margin="0,25,0,0" Height="25"/>
+        <TextBox x:Name="txtName" Text="{Binding Name}" Grid.Row="1" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Категория:" Grid.Row="2" Foreground="#FFECC286"/>
         <ComboBox x:Name="cmbCategories" DisplayMemberPath="name" SelectedValuePath="category_id"
-                  SelectedValue="{Binding category_id}" Grid.Row="2" Margin="0,25,0,0" Height="25"/>
+                  SelectedValue="{Binding CategoryId}" Grid.Row="2" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Производитель:" Grid.Row="3" Foreground="#FFECC286"/>
         <ComboBox x:Name="cmbFirms" DisplayMemberPath="name" SelectedValuePath="firm_id"
-                  SelectedValue="{Binding firm_id}" Grid.Row="3" Margin="0,25,0,0" Height="25" SelectionChanged="cmbFirms_SelectionChanged"/>
+                  SelectedValue="{Binding FirmId}" Grid.Row="3" Margin="0,25,0,0" Height="25" SelectionChanged="cmbFirms_SelectionChanged"/>
 
         <Label Content="Тип:" Grid.Row="4" Foreground="#FFECC286"/>
         <ComboBox x:Name="cmbTypes" DisplayMemberPath="name" SelectedValuePath="type_id"
-                  SelectedValue="{Binding type_id}" Grid.Row="4" Margin="0,25,0,0" Height="25"/>
+                  SelectedValue="{Binding TypeOfPrId}" Grid.Row="4" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Цена:" Grid.Row="5" Foreground="#FFECC286"/>
-        <TextBox x:Name="txtPrice" Text="{Binding price}" Grid.Row="5" Margin="0,25,0,0" Height="25"/>
+        <TextBox x:Name="txtPrice" Text="{Binding Price}" Grid.Row="5" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Количество:" Grid.Row="6" Foreground="#FFECC286"/>
-        <TextBox x:Name="txtQuantity" Text="{Binding quantity}" Grid.Row="6" Margin="0,25,0,0" Height="25"/>
+        <TextBox x:Name="txtQuantity" Text="{Binding Quantity}" Grid.Row="6" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Описание:" Grid.Row="7" Foreground="#FFECC286"/>
-        <TextBox x:Name="txtDescription" Text="{Binding description}" Grid.Row="7" Margin="0,25,0,0" 
+        <TextBox x:Name="txtDescription" Text="{Binding Description}" Grid.Row="7" Margin="0,25,0,0" 
                  Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
 
         <Label Content="Изображение:" Grid.Row="8" Foreground="#FFECC286"/>
         <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0,25,0,0">
-            <Image x:Name="imgPreview" Source="{Binding image}" Width="100" Height="100" 
+            <Image x:Name="imgPreview" Source="{Binding Image}" Width="100" Height="100" 
                    Stretch="UniformToFill" Margin="0,0,10,0"/>
             <Button x:Name="btnSelectImage" Content="Выбрать изображение" Width="150" 
                     Click="BtnSelectImage_Click" BorderBrush="Black" Foreground="#FFECC286" FontWeight="Bold" Background="#FF75425E" Height="35"/>

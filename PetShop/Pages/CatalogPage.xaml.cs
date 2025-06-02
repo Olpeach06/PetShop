@@ -10,10 +10,10 @@ namespace PetShop.Pages
 {
     public partial class CatalogPage : Page
     {
-        private USERS _currentUser;
-        private List<PRODUCTS> _allProducts;
+        private Users _currentUser;
+        private List<Products> _allProducts;
 
-        public CatalogPage(USERS user)
+        public CatalogPage(Users user)
         {
             InitializeComponent();
             _currentUser = user;
@@ -24,24 +24,24 @@ namespace PetShop.Pages
         {
             try
             {
-                _allProducts = AppConnect.model0db.PRODUCTS
-                    .Include(p => p.CATEGORIES)
-                    .Include(p => p.FIRM)
-                    .Include(p => p.TYPE)
+                _allProducts = AppConnect.model0db.Products
+                    .Include(p => p.Categories)
+                    .Include(p => p.Firms)
+                    .Include(p => p.TypeOfPr)
                     .ToList();
 
                 // Загрузка категорий с пунктом "По умолчанию"
-                var categories = AppConnect.model0db.CATEGORIES.ToList();
+                var categories = AppConnect.model0db.Categories.ToList();
                 cmbCategories.Items.Clear();
-                cmbCategories.Items.Add(new { name = "по умолчанию", category_id = -1 }); // Первый элемент
+                cmbCategories.Items.Add(new Categories { Name = "по умолчанию", CategoryId = -1 }); // Первый элемент
                 foreach (var cat in categories)
                     cmbCategories.Items.Add(cat);
                 cmbCategories.SelectedIndex = 0;
 
                 // Загрузка фирм с пунктом "По умолчанию"
-                var firms = AppConnect.model0db.FIRM.ToList();
+                var firms = AppConnect.model0db.Firms.ToList();
                 cmbFirms.Items.Clear();
-                cmbFirms.Items.Add(new { name = "по умолчанию", category_id = -1 }); // Первый элемент
+                cmbFirms.Items.Add(new Firms { Name = "по умолчанию", FirmId = -1 }); // Первый элемент
                 foreach (var firm in firms)
                     cmbFirms.Items.Add(firm);
                 cmbFirms.SelectedIndex = 0;
@@ -57,41 +57,41 @@ namespace PetShop.Pages
         private void BtnAddToCart_Click(object sender, RoutedEventArgs e)
         {
             var productId = (int)((Button)sender).Tag;
-            var product = _allProducts.FirstOrDefault(p => p.product_id == productId);
+            var product = _allProducts.FirstOrDefault(p => p.ProductId == productId);
 
             if (product == null) return;
 
             // Проверяем, есть ли достаточное количество товара на складе
-            if (product.quantity <= 0)
+            if (product.Quantity <= 0)
             {
                 MessageBox.Show("Данный товар временно отсутствует в продаже.", "Нет в наличии", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
-            var existingItem = AppConnect.model0db.BASKET
-                .FirstOrDefault(b => b.users_id == _currentUser.users_id && b.product_id == productId);
+            var existingItem = AppConnect.model0db.Baskets
+                .FirstOrDefault(b => b.UserId == _currentUser.UsersId && b.ProductId == productId);
 
             if (existingItem != null)
             {
                 // Проверяем, хватает ли товара на складе, чтобы увеличить количество
-                if (existingItem.quantity + 1 > product.quantity)
+                if (existingItem.Quantity + 1 > product.Quantity)
                 {
-                    MessageBox.Show($"Макс. возможное количество товара '{product.name}' достигнуто ({product.quantity}).", "Ограничение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show($"Макс. возможное количество товара '{product.Name}' достигнуто ({product.Quantity}).", "Ограничение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
 
-                existingItem.quantity++; // Увеличиваем количество в корзине
+                existingItem.Quantity++; // Увеличиваем количество в корзине
             }
             else
             {
                 // Добавляем новую позицию в корзину
-                var newItem = new BASKET
+                var newItem = new Baskets
                 {
-                    product_id = productId,
-                    users_id = _currentUser.users_id,
-                    quantity = 1
+                    ProductId = productId,
+                    UserId = _currentUser.UsersId,
+                    Quantity = 1
                 };
-                AppConnect.model0db.BASKET.Add(newItem);
+                AppConnect.model0db.Baskets.Add(newItem);
             }
 
             try
@@ -129,21 +129,21 @@ namespace PetShop.Pages
             var filtered = _allProducts.AsEnumerable();
 
             // Фильтр по категории (если выбрано не "По умолчанию")
-            if (cmbCategories.SelectedIndex > 0 && cmbCategories.SelectedItem is CATEGORIES selectedCategory)
+            if (cmbCategories.SelectedIndex > 0 && cmbCategories.SelectedItem is Categories selectedCategory)
             {
-                filtered = filtered.Where(p => p.category_id == selectedCategory.category_id);
+                filtered = filtered.Where(p => p.CategoryId == selectedCategory.CategoryId);
             }
 
             // Фильтр по фирме (если выбрано не "По умолчанию")
-            if (cmbFirms.SelectedIndex > 0 && cmbFirms.SelectedItem is FIRM selectedFirm)
+            if (cmbFirms.SelectedIndex > 0 && cmbFirms.SelectedItem is Firms selectedFirm)
             {
-                filtered = filtered.Where(p => p.firm_id == selectedFirm.firm_id);
+                filtered = filtered.Where(p => p.FirmId == selectedFirm.FirmId);
             }
 
             // Фильтр по поиску
             if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
-                filtered = filtered.Where(p => p.name.Contains(txtSearch.Text));
+                filtered = filtered.Where(p => p.Name.Contains(txtSearch.Text));
             }
 
             lvProducts.ItemsSource = filtered.ToList();

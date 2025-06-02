@@ -24,12 +24,12 @@
         <DataGrid x:Name="dgProducts" Grid.Row="1" Margin="10" AutoGenerateColumns="False"
           CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding product_id}" Width="Auto"/>
-                <DataGridTextColumn Header="Название" Binding="{Binding name}" Width="*"/>
-                <DataGridTextColumn Header="Цена" Binding="{Binding price}" Width="Auto"/>
-                <DataGridTextColumn Header="Количество" Binding="{Binding quantity}" Width="Auto"/>
-                <DataGridTextColumn Header="Категория" Binding="{Binding CATEGORIES.name}" Width="Auto"/>
-                <DataGridTextColumn Header="Производитель" Binding="{Binding FIRM.name}" Width="Auto"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding ProductId}" Width="Auto"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="Auto"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="Auto"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Categories.Name}" Width="Auto"/>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Firms.Name}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

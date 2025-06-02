@@ -13,7 +13,7 @@ namespace PetShop.Pages
         public AuthorizationPage()
         {
             InitializeComponent();
-            AppConnect.model0db = new PetShopEntities1();
+            AppConnect.model0db = new PetShopOnEntities();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -30,7 +30,7 @@ namespace PetShop.Pages
 
             try
             {
-                var user = AppConnect.model0db.USERS.FirstOrDefault(u => u.email == email && u.password == password);
+                var user = AppConnect.model0db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
 
                 if (user == null)
                 {
@@ -40,7 +40,7 @@ namespace PetShop.Pages
                 }
 
                 // Проверка роли пользователя
-                if (user.role_id == 1) // Администратор
+                if (user.RoleId == 1) // Администратор
                 {
                     AppFrame.frameMain.Navigate(new AdminMainPage()); // Переход администратора на свою страницу
                 }

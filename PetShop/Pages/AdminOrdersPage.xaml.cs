@@ -11,8 +11,8 @@ namespace PetShop.Pages
 {
     public partial class AdminOrdersPage : Page
     {
-        public List<STATUS> StatusList { get; set; }
-        private ZAKAZ _selectedOrder;
+        public List<Statuses> StatusList { get; set; }
+        private Zakazy _selectedOrder;
 
         public AdminOrdersPage()
         {
@@ -25,17 +25,17 @@ namespace PetShop.Pages
         {
             try
             {
-                StatusList = AppConnect.model0db.STATUS.ToList();
+                StatusList = AppConnect.model0db.Statuses.ToList();
                 cmbStatus.ItemsSource = StatusList;
                 cmbStatus.SelectedIndex = 0;
 
-                AppConnect.model0db.ZAKAZ
-                    .Include(z => z.USERS)
-                    .Include(z => z.STATUS)
-                    .Include(z => z.PURCHASE.Select(p => p.PRODUCTS))
+                AppConnect.model0db.Zakazy
+                    .Include(z => z.Users)
+                    .Include(z => z.Statuses)
+                    .Include(z => z.Purchases.Select(p => p.Products))
                     .Load();
 
-                dgOrders.ItemsSource = AppConnect.model0db.ZAKAZ.Local;
+                dgOrders.ItemsSource = AppConnect.model0db.Zakazy.Local;
             }
             catch (Exception ex)
             {
@@ -46,12 +46,12 @@ namespace PetShop.Pages
 
         private void BtnApplyFilter_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbStatus.SelectedItem is STATUS selectedStatus)
+            if (cmbStatus.SelectedItem is Statuses selectedStatus)
             {
-                dgOrders.ItemsSource = AppConnect.model0db.ZAKAZ
-                    .Where(z => z.status_id == selectedStatus.status_id)
-                    .Include(z => z.USERS)
-                    .Include(z => z.STATUS)
+                dgOrders.ItemsSource = AppConnect.model0db.Zakazy
+                    .Where(z => z.StatusId == selectedStatus.StatusId)
+                    .Include(z => z.Users)
+                    .Include(z => z.Statuses)
                     .ToList();
             }
         }
@@ -59,23 +59,23 @@ namespace PetShop.Pages
         private void BtnResetFilter_Click(object sender, RoutedEventArgs e)
         {
             cmbStatus.SelectedIndex = 0;
-            dgOrders.ItemsSource = AppConnect.model0db.ZAKAZ.Local;
+            dgOrders.ItemsSource = AppConnect.model0db.Zakazy.Local;
         }
 
         private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0 && e.AddedItems[0] is STATUS selectedStatus)
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] is Statuses selectedStatus)
             {
                 var comboBox = sender as ComboBox;
-                var order = comboBox?.DataContext as ZAKAZ;
+                var order = comboBox?.DataContext as Zakazy;
 
-                if (order != null && order.status_id != selectedStatus.status_id)
+                if (order != null && order.StatusId != selectedStatus.StatusId)
                 {
                     // Сохраняем выбранный заказ для отмены изменений
                     _selectedOrder = order;
 
                     // Подтверждение изменения статуса
-                    var result = MessageBox.Show($"Изменить статус заказа #{order.zakaz_id} на '{selectedStatus.name}'?",
+                    var result = MessageBox.Show($"Изменить статус заказа #{order.ZakazId} на '{selectedStatus.Name}'?",
                                               "Подтверждение",
                                               MessageBoxButton.YesNo,
                                               MessageBoxImage.Question);
@@ -84,8 +84,8 @@ namespace PetShop.Pages
                     {
                         try
                         {
-                            order.status_id = selectedStatus.status_id;
-                            order.STATUS = selectedStatus;
+                            order.StatusId = selectedStatus.StatusId;
+                            order.Statuses = selectedStatus;
                             AppConnect.model0db.SaveChanges();
 
                             // Обновляем отображение
@@ -97,13 +97,13 @@ namespace PetShop.Pages
                                             MessageBoxButton.OK, MessageBoxImage.Error);
                             // Откатываем изменения
                             AppConnect.model0db.Entry(order).Reload();
-                            comboBox.SelectedValue = order.status_id;
+                            comboBox.SelectedValue = order.StatusId;
                         }
                     }
                     else
                     {
                         // Отменяем выбор в комбобоксе
-                        comboBox.SelectedValue = order.status_id;
+                        comboBox.SelectedValue = order.StatusId;
                     }
                 }
             }
@@ -112,12 +112,12 @@ namespace PetShop.Pages
         private void DgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Сохраняем выбранный заказ при изменении выделения
-            _selectedOrder = dgOrders.SelectedItem as ZAKAZ;
+            _selectedOrder = dgOrders.SelectedItem as Zakazy;
         }
         private void BtnSaveStatus_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            var order = button?.Tag as ZAKAZ;
+            var order = button?.Tag as Zakazy;
 
             if (order != null)
             {

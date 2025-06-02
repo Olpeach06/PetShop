@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PetShop
 {
-    public partial class ZAKAZ
+    public partial class Zakazy
     {
         // Вычисляемая сумма заказа
         public decimal TotalAmount
         {
             get
             {
-                return PURCHASE?.Sum(p => p.quantity * (p.PRODUCTS?.price ?? 0)) ?? 0;
+                return Purchases?.Sum(p => p.Quantity * (p.Products?.Price ?? 0)) ?? 0;
             }
         }
 
@@ -22,7 +22,7 @@ namespace PetShop
         {
             get
             {
-                return $"{USERS?.last_name} {USERS?.first_name} {USERS?.patronymic}";
+                return $"{Users?.LastName} {Users?.FirstName} {Users?.Patronymic}";
             }
         }
 
@@ -31,7 +31,7 @@ namespace PetShop
         {
             get
             {
-                return $"{USERS?.last_name} {USERS?.first_name} {USERS?.patronymic}".Trim();
+                return $"{Users?.LastName} {Users?.FirstName} {Users?.Patronymic}".Trim();
             }
         }
     }

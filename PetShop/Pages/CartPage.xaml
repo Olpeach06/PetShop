@@ -39,23 +39,23 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Source="{Binding PRODUCTS.CurrentPhoto}" 
+                        <Image Grid.Column="0" Source="{Binding Products.CurrentPhoto}" 
                        Height="80" Width="80" Stretch="UniformToFill"/>
 
-                        <TextBlock Grid.Column="1" Text="{Binding PRODUCTS.name}" 
+                        <TextBlock Grid.Column="1" Text="{Binding Products.Name}" 
                            VerticalAlignment="Center" Margin="10,0,0,0"/>
 
                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Button Content="-" Width="30" Margin="5" Click="DecreaseQty_Click" Tag="{Binding basket_id}"/>
-                            <TextBlock x:Name="txtQty" Text="{Binding quantity}" Margin="5" />
-                            <Button Content="+" Width="30" Margin="5" Click="IncreaseQty_Click" Tag="{Binding basket_id}"/>
+                            <Button Content="-" Width="30" Margin="5" Click="DecreaseQty_Click" Tag="{Binding BasketId}"/>
+                            <TextBlock x:Name="txtQty" Text="{Binding Quantity}" Margin="5" />
+                            <Button Content="+" Width="30" Margin="5" Click="IncreaseQty_Click" Tag="{Binding BasketId}"/>
                         </StackPanel>
 
-                        <TextBlock Grid.Column="3" Text="{Binding PRODUCTS.price, StringFormat={}{0:N2} ₽}" 
+                        <TextBlock Grid.Column="3" Text="{Binding Products.Price, StringFormat={}{0:N2} ₽}" 
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                         <Button Grid.Column="4" Content="Удалить" Background="red" Foreground="White"
-                        Click="BtnRemove_Click" Tag="{Binding basket_id}"/>
+                        Click="BtnRemove_Click" Tag="{Binding BasketId}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

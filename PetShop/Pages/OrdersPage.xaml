@@ -25,15 +25,15 @@
             <ListView.View>
                 <GridView>
                     <!--<GridViewColumn Header="Номер" DisplayMemberBinding="{Binding zakaz_id}" Width="50"/>-->
-                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding date, StringFormat='{}{0:dd.MM.yyyy}'}" Width="100"/>
-                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding STATUS.name}" Width="150"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" Width="100"/>
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Statuses.Name}" Width="150"/>
                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding TotalAmount, StringFormat='{}{0:N2} ₽'}" Width="100"/>
                     <GridViewColumn Header="Действия" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Детали" 
                                         Click="BtnDetails_Click" 
-                                        Tag="{Binding zakaz_id}"
+                                        Tag="{Binding ZakazId}"
                                         Background="#FF75425E"
                                         Foreground="#FFECC286"
                                         BorderBrush="Black"

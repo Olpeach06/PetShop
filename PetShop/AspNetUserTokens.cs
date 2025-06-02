@@ -12,18 +12,13 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class AspNetUserTokens
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
-        {
-            this.Products = new HashSet<Products>();
-        }
-    
-        public int CategoryId { get; set; }
+        public string UserId { get; set; }
+        public string LoginProvider { get; set; }
         public string Name { get; set; }
+        public string Value { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Products> Products { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

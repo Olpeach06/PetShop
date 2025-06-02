@@ -12,21 +12,22 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class TYPE
+    public partial class Zakazy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TYPE()
+        public Zakazy()
         {
-            this.PRODUCTS = new HashSet<PRODUCTS>();
-            this.PRODUCTS1 = new HashSet<PRODUCTS>();
+            this.Purchases = new HashSet<Purchases>();
         }
     
-        public int type_id { get; set; }
-        public string name { get; set; }
+        public int ZakazId { get; set; }
+        public int UserId { get; set; }
+        public System.DateTime Date { get; set; }
+        public int StatusId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRODUCTS> PRODUCTS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRODUCTS> PRODUCTS1 { get; set; }
+        public virtual ICollection<Purchases> Purchases { get; set; }
+        public virtual Statuses Statuses { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

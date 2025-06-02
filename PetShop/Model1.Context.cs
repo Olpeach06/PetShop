@@ -13,10 +13,10 @@ namespace PetShop
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PetShopEntities1 : DbContext
+    public partial class PetShopOnEntities : DbContext
     {
-        public PetShopEntities1()
-            : base("name=PetShopEntities1")
+        public PetShopOnEntities()
+            : base("name=PetShopOnEntities")
         {
         }
     
@@ -25,15 +25,22 @@ namespace PetShop
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BASKET> BASKET { get; set; }
-        public virtual DbSet<CATEGORIES> CATEGORIES { get; set; }
-        public virtual DbSet<FIRM> FIRM { get; set; }
-        public virtual DbSet<PRODUCTS> PRODUCTS { get; set; }
-        public virtual DbSet<PURCHASE> PURCHASE { get; set; }
-        public virtual DbSet<ROLE> ROLE { get; set; }
-        public virtual DbSet<STATUS> STATUS { get; set; }
-        public virtual DbSet<TYPE> TYPE { get; set; }
-        public virtual DbSet<USERS> USERS { get; set; }
-        public virtual DbSet<ZAKAZ> ZAKAZ { get; set; }
+        public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
+        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual DbSet<Baskets> Baskets { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Firms> Firms { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Purchases> Purchases { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Statuses> Statuses { get; set; }
+        public virtual DbSet<TypeOfPr> TypeOfPr { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Zakazy> Zakazy { get; set; }
     }
 }

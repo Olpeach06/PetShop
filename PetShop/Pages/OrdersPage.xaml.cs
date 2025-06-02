@@ -18,15 +18,15 @@ namespace PetShop.Pages
 {
     public partial class OrdersPage : Page
     {
-        private USERS _currentUser;
+        private Users _currentUser;
 
-        public OrdersPage(USERS user)
+        public OrdersPage(Users user)
         {
             InitializeComponent();
             _currentUser = user;
 
-            var orders = AppConnect.model0db.ZAKAZ
-                .Where(z => z.users_id == user.users_id)
+            var orders = AppConnect.model0db.Zakazy
+                .Where(z => z.UserId == user.UsersId)
                 .ToList();
             lvOrders.ItemsSource = orders;
         }
@@ -45,8 +45,8 @@ namespace PetShop.Pages
         private void BtnOrders_Click(object sender, RoutedEventArgs e)
         {
             // Уже находимся на странице заказов, можно обновить данные
-            var orders = AppConnect.model0db.ZAKAZ
-                .Where(z => z.users_id == _currentUser.users_id)
+            var orders = AppConnect.model0db.Zakazy
+                .Where(z => z.UserId == _currentUser.UsersId)
                 .ToList();
             lvOrders.ItemsSource = orders;
         }
@@ -60,10 +60,12 @@ namespace PetShop.Pages
         {
             if (((Button)sender).Tag is int orderId)
             {
-                var order = AppConnect.model0db.ZAKAZ.Find(orderId);
-                if (order != null)
-                    NavigationService.Navigate(new OrderDetailsPage(order));
+                var order = AppConnect.model0db.Zakazy.Find(orderId);
+                if (order != null) { 
+                    NavigationService.Navigate(new OrderDetailsPage(order)); }
+                else { MessageBox.Show("sdfdsfds"); }
             }
+            else { MessageBox.Show("111111111"); }
         }
     }
 }

@@ -52,23 +52,23 @@ namespace PetShop.Pages
                     return;
                 }
 
-                if (AppConnect.model0db.USERS.Any(u => u.email == txtEmail.Text))
+                if (AppConnect.model0db.Users.Any(u => u.Email == txtEmail.Text))
                 {
                     ShowError("Пользователь с таким email уже существует!");
                     return;
                 }
 
-                var newUser = new USERS
+                var newUser = new Users
                 {
-                    last_name = txtLastName.Text.Trim(),
-                    first_name = txtFirstName.Text.Trim(),
-                    patronymic = string.IsNullOrWhiteSpace(txtPatronymic.Text) ? null : txtPatronymic.Text.Trim(),
-                    email = txtEmail.Text.Trim(),
-                    password = txtPassword.Password,
-                    role_id = 2
+                    LastName = txtLastName.Text.Trim(),
+                    FirstName = txtFirstName.Text.Trim(),
+                    Patronymic = string.IsNullOrWhiteSpace(txtPatronymic.Text) ? null : txtPatronymic.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
+                    Password = txtPassword.Password,
+                    RoleId = 2
                 };
 
-                AppConnect.model0db.USERS.Add(newUser);
+                AppConnect.model0db.Users.Add(newUser);
                 AppConnect.model0db.SaveChanges();
 
                 MessageBox.Show("Регистрация прошла успешно!", "Успех",

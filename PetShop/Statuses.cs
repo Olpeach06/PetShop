@@ -12,21 +12,18 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class ROLE
+    public partial class Statuses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ROLE()
+        public Statuses()
         {
-            this.USERS = new HashSet<USERS>();
-            this.USERS1 = new HashSet<USERS>();
+            this.Zakazy = new HashSet<Zakazy>();
         }
     
-        public int role_id { get; set; }
-        public string name { get; set; }
+        public int StatusId { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USERS> USERS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USERS> USERS1 { get; set; }
+        public virtual ICollection<Zakazy> Zakazy { get; set; }
     }
 }

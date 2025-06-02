@@ -12,56 +12,46 @@ namespace PetShop
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCTS
+    public partial class Products
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PRODUCTS()
+        public Products()
         {
-            this.BASKET = new HashSet<BASKET>();
-            this.BASKET1 = new HashSet<BASKET>();
-            this.PURCHASE = new HashSet<PURCHASE>();
-            this.PURCHASE1 = new HashSet<PURCHASE>();
+            this.Baskets = new HashSet<Baskets>();
+            this.Purchases = new HashSet<Purchases>();
         }
     
-        public int product_id { get; set; }
-        public int category_id { get; set; }
-        public int type_id { get; set; }
-        public int firm_id { get; set; }
-        public string name { get; set; }
-        public decimal price { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public string description { get; set; }
-        public string image { get; set; }
+        public int ProductId { get; set; }
+        public string Name { get; set; }
+        public int Price { get; set; }
+        public int Quantity { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
+        public int CategoryId { get; set; }
+        public int TypeOfPrTypeId { get; set; }
+        public int FirmId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Baskets> Baskets { get; set; }
+        public virtual Categories Categories { get; set; }
+        public virtual Firms Firms { get; set; }
+        public virtual TypeOfPr TypeOfPr { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchases> Purchases { get; set; }
 
         public string CurrentPhoto
         {
             get
             {
-                if (String.IsNullOrEmpty(image) || String.IsNullOrWhiteSpace(image))
+                if (String.IsNullOrEmpty(Image) || String.IsNullOrWhiteSpace(Image))
                 {
                     return "/Images/picture.jpg";
                 }
                 else
                 {
-                    return "/Images/" + image;
+                    return "/Images/" + Image;
                 }
             }
         }
-
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BASKET> BASKET { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BASKET> BASKET1 { get; set; }
-        public virtual CATEGORIES CATEGORIES { get; set; }
-        public virtual CATEGORIES CATEGORIES1 { get; set; }
-        public virtual FIRM FIRM { get; set; }
-        public virtual FIRM FIRM1 { get; set; }
-        public virtual TYPE TYPE { get; set; }
-        public virtual TYPE TYPE1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PURCHASE> PURCHASE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PURCHASE> PURCHASE1 { get; set; }
     }
 }
