@@ -29,5 +29,7 @@
             <Button x:Name="BtnRegister" Content="Регистрация" 
                     Padding="10,5" Click="BtnRegister_Click" Foreground="#FFECC286" Background="#FF75425E" BorderBrush="Black" FontWeight="Bold" FontSize="14"/>
         </StackPanel>
+        <Image x:Name="imgQr" HorizontalAlignment="Left" Height="100" Margin="664,37,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="Btn_qrcode" Content="QR-коде" HorizontalAlignment="Left" Margin="692,155,0,0" VerticalAlignment="Top" Click="Btn_qrcode_Click" Foreground="#FFECC286" Background="#FF75425E" BorderBrush="Black"/>
     </Grid>
 </Page>

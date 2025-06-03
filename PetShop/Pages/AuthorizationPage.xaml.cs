@@ -1,8 +1,11 @@
 ﻿using PetShop.AppData;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using ZXing;
 
 namespace PetShop.Pages
 {
@@ -74,6 +77,32 @@ namespace PetShop.Pages
                 txtEmail.Text = _lastEnteredEmail;
             }
             txtError.Visibility = Visibility.Collapsed;
+        }
+
+        private void Btn_qrcode_Click(object sender, RoutedEventArgs e)
+        {
+            var writer = new BarcodeWriter
+            {
+                Format = BarcodeFormat.QR_CODE,
+                Options = new ZXing.Common.EncodingOptions
+                {
+                    Width = 300,
+                    Height = 300
+                }
+            };
+            var result = writer.Write(@"https://music.yandex.ru/album/51841/track/332895?utm_medium=copy_link");
+            var bitmap = new BitmapImage();
+            using (var memoryStream = new MemoryStream())
+            {
+                result.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                memoryStream.Position = 0;
+                bitmap.BeginInit();
+                bitmap.StreamSource = memoryStream;
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                bitmap.Freeze();
+            }
+            imgQr.Source = bitmap;
         }
     }
 }

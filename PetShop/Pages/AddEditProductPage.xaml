@@ -22,22 +22,22 @@
         </Grid.RowDefinitions>
 
         <!-- Убрал привязку к Title, так как она не используется -->
-        <TextBlock Text="Редактирование товара" Grid.Row="0" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#FFECC286"/>
+        <TextBlock Text="Добавление и редактирование товара" Grid.Row="0" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" Foreground="#FFECC286"/>
 
         <Label Content="Название:" Grid.Row="1" Foreground="#FFECC286"/>
         <TextBox x:Name="txtName" Text="{Binding Name}" Grid.Row="1" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Категория:" Grid.Row="2" Foreground="#FFECC286"/>
-        <ComboBox x:Name="cmbCategories" DisplayMemberPath="name" SelectedValuePath="category_id"
+        <ComboBox x:Name="cmbCategories" DisplayMemberPath="Name" SelectedValuePath="CategoryId"
                   SelectedValue="{Binding CategoryId}" Grid.Row="2" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Производитель:" Grid.Row="3" Foreground="#FFECC286"/>
-        <ComboBox x:Name="cmbFirms" DisplayMemberPath="name" SelectedValuePath="firm_id"
-                  SelectedValue="{Binding FirmId}" Grid.Row="3" Margin="0,25,0,0" Height="25" SelectionChanged="cmbFirms_SelectionChanged"/>
+        <ComboBox x:Name="cmbFirms" DisplayMemberPath="Name" SelectedValuePath="FirmId"
+                  SelectedValue="{Binding FirmId}" Grid.Row="3" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Тип:" Grid.Row="4" Foreground="#FFECC286"/>
-        <ComboBox x:Name="cmbTypes" DisplayMemberPath="name" SelectedValuePath="type_id"
-                  SelectedValue="{Binding TypeOfPrId}" Grid.Row="4" Margin="0,25,0,0" Height="25"/>
+        <ComboBox x:Name="cmbTypes" DisplayMemberPath="Name" SelectedValuePath="TypeId"
+                  SelectedValue="{Binding TypeOfPrTypeId}" Grid.Row="4" Margin="0,25,0,0" Height="25"/>
 
         <Label Content="Цена:" Grid.Row="5" Foreground="#FFECC286"/>
         <TextBox x:Name="txtPrice" Text="{Binding Price}" Grid.Row="5" Margin="0,25,0,0" Height="25"/>

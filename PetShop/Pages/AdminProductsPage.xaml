@@ -17,7 +17,8 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <Button Content="Добавить" Click="BtnAdd_Click" Margin="5" BorderBrush="Black" FontWeight="Bold" Foreground="#FFECC286" Background="#FF75425E"/>
             <Button Content="Редактировать" Click="BtnEdit_Click" Margin="5" Foreground="#FFECC286" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E"/>
-            <Button Content="Удалить" Click="BtnDelete_Click" Margin="5" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E" Foreground="#FFECC286"/>
+            <Button Content="❌ Удалить" Click="BtnDelete_Click" Margin="5" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E" Foreground="#FFECC286"/>
+            <Button Content="📈 Экспорт" Click="BtnExport_Click" Margin="5" BorderBrush="Black" FontWeight="Bold" Background="#FF75425E" Foreground="#FFECC286"/>
         </StackPanel>
 
         <!-- Список товаров -->

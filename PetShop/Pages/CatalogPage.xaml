@@ -21,7 +21,7 @@
         <!-- Навигационная панель (в самом верху) -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF5F344C">
             <Button Content="Каталог" Style="{StaticResource MenuButton}" Click="BtnCatalog_Click" Foreground="#FFECC286"/>
-            <Button Content="Корзина" Style="{StaticResource MenuButton}" Click="BtnCart_Click" Foreground="#FFECC286"/>
+            <Button Content="🛒 Корзина" Style="{StaticResource MenuButton}" Click="BtnCart_Click" Foreground="#FFECC286"/>
             <Button Content="Заказы" Style="{StaticResource MenuButton}" Click="BtnOrders_Click" Foreground="#FFECC286"/>
             <Button Content="Выйти" Style="{StaticResource MenuButton}" Click="BtnLogout_Click" Foreground="#FFECC286"/>
         </StackPanel>

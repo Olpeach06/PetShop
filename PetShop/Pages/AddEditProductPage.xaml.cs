@@ -60,18 +60,56 @@ namespace PetShop.Pages
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             // Проверка обязательных полей
-            if (string.IsNullOrWhiteSpace(_currentProduct.Name) ||
-                _currentProduct.Price <= 0 ||
-                _currentProduct.Quantity < 0 ||
-                _currentProduct.CategoryId == 0 ||
-                _currentProduct.FirmId == 0 ||
-                _currentProduct.TypeOfPrTypeId == 0)
+            if (string.IsNullOrWhiteSpace(_currentProduct.Name)) 
+
+
             {
-                MessageBox.Show("Пожалуйста, заполните все обязательные поля!", "Ошибка",
+                MessageBox.Show("Пожалуйста, заполните название", "Ошибка",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
+            if 
+               ( _currentProduct.Price <= 0)
+
+
+            {
+                MessageBox.Show("Пожалуйста, заполните цену", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (_currentProduct.Quantity <= 0)
+
+
+            {
+                MessageBox.Show("Пожалуйста, заполните количество", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (_currentProduct.CategoryId == 0)
+
+
+            {
+                MessageBox.Show("Пожалуйста, заполните категорию", "Ошибка",
+
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (_currentProduct.FirmId == 0 )
+
+            {
+                MessageBox.Show("Пожалуйста, заполните фирму", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (_currentProduct.TypeOfPrTypeId == 0)
+
+
+            {
+                MessageBox.Show("Пожалуйста, заполните тип", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             if (_currentProduct.ProductId == 0)
                 AppConnect.model0db.Products.Add(_currentProduct);
 
@@ -106,11 +144,6 @@ namespace PetShop.Pages
                 _currentProduct.Image = dialog.FileName;
                 imgPreview.Source = new BitmapImage(new Uri(_currentProduct.Image));
             }
-        }
-
-        private void cmbFirms_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

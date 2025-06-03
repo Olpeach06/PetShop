@@ -1,8 +1,13 @@
-﻿using PetShop.AppData;
+﻿using Microsoft.Win32;
+using OfficeOpenXml;
+using PetShop.AppData;
 using PetShop.Pages; // Добавьте эту директиву using
 using System;
+using System.IO;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -78,6 +83,61 @@ namespace PetShop.Pages
                 {
                     MessageBox.Show($"Ошибка при удалении товара:\n{ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+        }
+
+        private void BtnExport_Click(object sender, RoutedEventArgs e)
+        {
+            // Преобразование коллекции в правильный тип и создание безопасного списка
+            List<Products> allProducts = ((IEnumerable<object>)dgProducts.ItemsSource)?.Cast<Products>()?.ToList() ?? new List<Products>();
+
+            // Проверяем наличие элементов
+            if (!allProducts.Any())
+            {
+                MessageBox.Show("Нет товаров для экспорта.", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            ExportToCsv(allProducts);
+        }
+
+        private void ExportToCsv(List<Products> products)
+        {
+            try
+            {
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    Filter = "CSV файлы (*.csv)|*.csv|Excel файлы (*.xlsx)|*.xlsx",
+                    FileName = "Товары.csv"
+                };
+
+                if (saveDialog.ShowDialog() == true)
+                {
+                    var sb = new StringBuilder();
+
+                    // Добавляем заголовки столбцов
+                    sb.AppendLine("Номер;Название;Цена;Количество;Категория;Производитель");
+
+                    // Заполняем строки данными
+                    foreach (var product in products)
+                    {
+                        // Обрабатываем случай, когда категории или фирмы отсутствуют
+                        string categoryName = product.Categories != null ? product.Categories.Name : "";
+                        string firmName = product.Firms != null ? product.Firms.Name : "";
+
+                        sb.AppendLine(
+                            $"{product.ProductId};{product.Name};{product.Price};{product.Quantity};{categoryName};{firmName}"
+                        );
+                    }
+
+                    // Сохраняем файл
+                    System.IO.File.WriteAllText(saveDialog.FileName, sb.ToString(), Encoding.UTF8);
+                    MessageBox.Show("Файл успешно сохранён!", "Экспорт", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при экспорте: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
